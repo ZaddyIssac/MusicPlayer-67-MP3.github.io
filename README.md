@@ -1,2 +1,4 @@
-# MusicPlayer-67-MP3.github.io
+# Music Player
 February 2nd music player
+
+see what i did
