@@ -1,10 +1,10 @@
-println("Hello World");
+println("file changed");
 //
-print("Hello");
-print("World");
+print("file");
+print("changed");
 //
-print("Hello");
-print("\tWorld");
+print("file");
+print("\tchanged");
 //
-print("Hello");
-print("\nWorld");
+print("file");
+print("\nchanged");
