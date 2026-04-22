@@ -35,8 +35,8 @@ void setup() {
   String musicFolder = "Music"; //Developer Specific
   String soundEffectsFolder = "Sound Effects"; //Developer Specific
   String dependenciesFolder = "Dependencies"; //Developer Specific
-  String songName1 = "Dependencies_Music_Eureka";
-  String soundEffect1 = "Dependencies_Sound Effects_Wood_Door_Open_And_Close_Series";
+  String songName1 = "Eureka";
+  String soundEffect1 = "Wood_Door";
   String fileExtension_mp3 = ".mp3";
   //
   //CAUTION: Mistakes Below
