@@ -61,46 +61,12 @@ rect(offsetX + 1.3 * scaleFactor,
      11.4 * scaleFactor,
      3);
 
-// Image symbol (simple picture icon)
-stroke(0);
-line(offsetX + 1.5 * scaleFactor,
-     offsetY + 26.5 * scaleFactor,
-     offsetX + 5 * scaleFactor,
-     offsetY + 19 * scaleFactor);
-line(offsetX + 5 * scaleFactor,
-     offsetY + 19 * scaleFactor,
-     offsetX + 10 * scaleFactor,
-     offsetY + 26.5 * scaleFactor);
-ellipse(offsetX + 3 * scaleFactor,
-        offsetY + 18 * scaleFactor,
-        0.8 * scaleFactor,
-        0.8 * scaleFactor);
-
 // Lyrics Section
 rect(offsetX + 5.2 * scaleFactor,
      offsetY + 4.6 * scaleFactor,
      8.3 * scaleFactor,
      7.1 * scaleFactor,
      3);
-
-// Lyrics symbol (musical note)
-stroke(0);
-line(offsetX + 6 * scaleFactor,
-     offsetY + 5 * scaleFactor,
-     offsetX + 6 * scaleFactor,
-     offsetY + 7 * scaleFactor);
-ellipse(offsetX + 6 * scaleFactor,
-        offsetY + 7.3 * scaleFactor,
-        0.5 * scaleFactor,
-        0.4 * scaleFactor);
-line(offsetX + 6 * scaleFactor,
-     offsetY + 5 * scaleFactor,
-     offsetX + 7 * scaleFactor,
-     offsetY + 5.4 * scaleFactor);
-ellipse(offsetX + 7 * scaleFactor,
-        offsetY + 7 * scaleFactor,
-        0.5 * scaleFactor,
-        0.4 * scaleFactor);
 
 // Progress Bar
 rect(offsetX + 1.3 * scaleFactor,
@@ -207,7 +173,7 @@ rect(offsetX + 1.3 * scaleFactor,
      3);
 
 // Favourite symbol (heart)
-fill(255, 0, 0);
+fill(0, 0, 0);
 noStroke();
 float fx = offsetX + 1.8 * scaleFactor;
 float fy = offsetY + 8.1 * scaleFactor;
