@@ -9,9 +9,16 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-// Global Images
+// -------------------------------------------------
+// GLOBAL VARIABLES
+// -------------------------------------------------
+
 PImage image1;
 PImage image2;
+
+// -------------------------------------------------
+// SETUP
+// -------------------------------------------------
 
 void setup() {
 
@@ -21,9 +28,12 @@ void setup() {
   image1 = loadImage("67-kid.jpg");
   image2 = loadImage("SoccerBall.jpg");
 
-  // Smooth edges
   smooth();
 }
+
+// -------------------------------------------------
+// DRAW
+// -------------------------------------------------
 
 void draw() {
 
@@ -106,7 +116,7 @@ void draw() {
        3);
 
   // -------------------------------------------------
-  // FIT IMAGE INSIDE BOX
+  // IMAGE FIT INSIDE BOX
   // -------------------------------------------------
 
   float scaleImage = min(imageBoxW / image1.width,
@@ -115,11 +125,9 @@ void draw() {
   float imageW = image1.width * scaleImage;
   float imageH = image1.height * scaleImage;
 
-  // Center image
   float imageX = imageBoxX + (imageBoxW - imageW) / 2;
   float imageY = imageBoxY + (imageBoxH - imageH) / 2;
 
-  // Draw image
   image(image1, imageX, imageY, imageW, imageH);
 
   // -------------------------------------------------
@@ -148,7 +156,7 @@ void draw() {
   // PLAY BUTTON
   // -------------------------------------------------
 
-  rect(offsetX + 1.3  * scaleFactor,
+  rect(offsetX + 1.3 * scaleFactor,
        offsetY + 4.6 * scaleFactor,
        1 * scaleFactor,
        1 * scaleFactor,
@@ -251,6 +259,56 @@ void draw() {
            offsetY + 6.5 * scaleFactor);
 
   // -------------------------------------------------
+  // SHUFFLE BUTTON
+  // -------------------------------------------------
+
+  stroke(0);
+  noFill();
+
+  rect(offsetX + 1.3 * scaleFactor,
+       offsetY + 6.6 * scaleFactor,
+       1 * scaleFactor,
+       1 * scaleFactor,
+       3);
+
+  line(offsetX + 1.4 * scaleFactor,
+       offsetY + 6.7 * scaleFactor,
+       offsetX + 2.2 * scaleFactor,
+       offsetY + 7.4 * scaleFactor);
+
+  line(offsetX + 1.4 * scaleFactor,
+       offsetY + 7.4 * scaleFactor,
+       offsetX + 2.2 * scaleFactor,
+       offsetY + 6.7 * scaleFactor);
+
+// -------------------------------------------------
+// LOOP BUTTON
+// -------------------------------------------------
+
+stroke(0);
+fill(255);
+
+rect(offsetX + 2.3 * scaleFactor,
+     offsetY + 6.6 * scaleFactor,
+     1 * scaleFactor,
+     1 * scaleFactor,
+     3);
+
+noFill();
+stroke(0);
+strokeWeight(2);
+
+// Circle with opening
+arc(offsetX + 2.8 * scaleFactor,
+    offsetY + 7.1 * scaleFactor,
+    0.55 * scaleFactor,
+    0.55 * scaleFactor,
+    radians(40),
+    radians(340));
+
+
+strokeWeight(1);
+  // -------------------------------------------------
   // FAVORITE BUTTON
   // -------------------------------------------------
 
@@ -287,56 +345,6 @@ void draw() {
            fy + 0.3 * scaleFactor);
 
   // -------------------------------------------------
-  // SHUFFLE BUTTON
-  // -------------------------------------------------
-
-  stroke(0);
-  noFill();
-
-  rect(offsetX + 1.3 * scaleFactor,
-       offsetY + 6.6 * scaleFactor,
-       1 * scaleFactor,
-       1 * scaleFactor,
-       3);
-
-  line(offsetX + 1.4 * scaleFactor,
-       offsetY + 6.7 * scaleFactor,
-       offsetX + 2.2 * scaleFactor,
-       offsetY + 7.4 * scaleFactor);
-
-  line(offsetX + 1.4 * scaleFactor,
-       offsetY + 7.4 * scaleFactor,
-       offsetX + 2.2 * scaleFactor,
-       offsetY + 6.7 * scaleFactor);
-
-  // -------------------------------------------------
-  // LOOP BUTTON
-  // -------------------------------------------------
-
-  rect(offsetX + 2.3 * scaleFactor,
-       offsetY + 6.6 * scaleFactor,
-       1 * scaleFactor,
-       1 * scaleFactor,
-       3);
-
-  float lx = offsetX + 2.8 * scaleFactor;
-  float ly = offsetY + 7.1 * scaleFactor;
-
-  ellipse(lx, ly,
-          0.6 * scaleFactor,
-          0.6 * scaleFactor);
-
-  line(lx + 0.3 * scaleFactor,
-       ly,
-       lx + 0.5 * scaleFactor,
-       ly - 0.2 * scaleFactor);
-
-  line(lx + 0.3 * scaleFactor,
-       ly,
-       lx + 0.5 * scaleFactor,
-       ly + 0.2 * scaleFactor);
-
-  // -------------------------------------------------
   // BOOKMARK BUTTON
   // -------------------------------------------------
 
@@ -365,8 +373,16 @@ void draw() {
            offsetY + 8.5 * scaleFactor);
 }
 
+// -------------------------------------------------
+// MOUSE PRESSED
+// -------------------------------------------------
+
 void mousePressed() {
 }
+
+// -------------------------------------------------
+// KEY PRESSED
+// -------------------------------------------------
 
 void keyPressed() {
 }
