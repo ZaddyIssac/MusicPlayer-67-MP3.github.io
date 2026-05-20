@@ -20,14 +20,15 @@ PImage image2;
 
 void setup() {
 
-  println(displayWidth, displayHeight);
+  size(455, 900);
 
-  fullScreen();
+  smooth();
+
+  // IMAGES MUST BE INSIDE:
+  // sketchFolder/data/
 
   image1 = loadImage("67-kid.jpg");
   image2 = loadImage("SoccerBall.jpg");
-
-  smooth();
 }
 
 // -------------------------------------------------
@@ -36,34 +37,39 @@ void setup() {
 
 void draw() {
 
-  background(255);
+  background(180);
 
-  int appWidth = displayWidth;
-  int appHeight = displayHeight;
-
-  // -------------------------------------------------
-  // PAPER SIZE (VERTICAL PHONE LAYOUT)
-  // -------------------------------------------------
-
-  float paperWidth = 142;
-  float paperHeight = 280;
+  float appWidth = width;
+  float appHeight = height;
 
   // -------------------------------------------------
-  // SCALE FACTOR
+  // PHONE SIZE
   // -------------------------------------------------
 
-  float scaleFactor = min(appWidth / paperWidth,
-                          appHeight / paperHeight);
+  float paperWidth = 142.0;
+  float paperHeight = 280.0;
+
+  // THIS FIXES THE GREY SIDES
+  float scaleFactor = appHeight / paperHeight;
+
+  float offsetX = (appWidth - paperWidth * scaleFactor) / 2.0;
+  float offsetY = 0;
 
   // -------------------------------------------------
-  // CENTERING
+  // PHONE BACKGROUND
   // -------------------------------------------------
 
-  float offsetX = (appWidth - paperWidth * scaleFactor) / 2;
-  float offsetY = (appHeight - paperHeight * scaleFactor) / 2;
+  fill(255);
+  stroke(0);
+
+  // REMOVED ROUNDED CORNERS
+  rect(offsetX,
+       offsetY,
+       paperWidth * scaleFactor,
+       paperHeight * scaleFactor);
 
   // -------------------------------------------------
-  // SONG TITLE OUTER BOX
+  // MAIN BOXES
   // -------------------------------------------------
 
   float songTitleOuterBoxX = offsetX + 30 * scaleFactor;
@@ -71,45 +77,25 @@ void draw() {
   float songTitleOuterBoxWidth = 84 * scaleFactor;
   float songTitleOuterBoxHeight = 20 * scaleFactor;
 
-  // -------------------------------------------------
-  // SONG TITLE TEXT BOX
-  // -------------------------------------------------
-
   float songTitleTextBoxX = offsetX + 48 * scaleFactor;
   float songTitleTextBoxY = offsetY + 5 * scaleFactor;
   float songTitleTextBoxWidth = 50 * scaleFactor;
   float songTitleTextBoxHeight = 13 * scaleFactor;
-
-  // -------------------------------------------------
-  // ARTIST NAME BOX
-  // -------------------------------------------------
 
   float artistNameBoxX = offsetX + 48 * scaleFactor;
   float artistNameBoxY = offsetY + 18 * scaleFactor;
   float artistNameBoxWidth = 50 * scaleFactor;
   float artistNameBoxHeight = 7 * scaleFactor;
 
-  // -------------------------------------------------
-  // CLOSE BUTTON
-  // -------------------------------------------------
-
   float closeButtonX = offsetX + 131 * scaleFactor;
   float closeButtonY = offsetY + 7 * scaleFactor;
   float closeButtonWidth = 7 * scaleFactor;
   float closeButtonHeight = 7 * scaleFactor;
 
-  // -------------------------------------------------
-  // PROGRESS BAR
-  // -------------------------------------------------
-
   float progressBarX = offsetX + 13 * scaleFactor;
   float progressBarY = offsetY + 30 * scaleFactor;
   float progressBarWidth = 120 * scaleFactor;
   float progressBarHeight = 13 * scaleFactor;
-
-  // -------------------------------------------------
-  // LYRICS SECTION
-  // -------------------------------------------------
 
   float lyricsSectionX = offsetX + 52 * scaleFactor;
   float lyricsSectionY = offsetY + 46 * scaleFactor;
@@ -117,83 +103,55 @@ void draw() {
   float lyricsSectionHeight = 71 * scaleFactor;
 
   // -------------------------------------------------
-  // IMAGE DISPLAY BOX
+  // IMAGE BOX
   // -------------------------------------------------
 
   float imageDisplayBoxX = offsetX + 13 * scaleFactor;
-  float imageDisplayBoxY = offsetY + 155 * scaleFactor;
+  float imageDisplayBoxY = offsetY + 135 * scaleFactor;
   float imageDisplayBoxWidth = 114 * scaleFactor;
   float imageDisplayBoxHeight = 114 * scaleFactor;
 
   // -------------------------------------------------
-  // PLAY BUTTON
+  // BUTTONS
   // -------------------------------------------------
 
-  float playButtonX = offsetX + 13 * scaleFactor;
-  float playButtonY = offsetY + 46 * scaleFactor;
+  float playButtonX = offsetX + 16 * scaleFactor;
+  float playButtonY = offsetY + 48 * scaleFactor;
   float playButtonWidth = 10 * scaleFactor;
   float playButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // PAUSE BUTTON
-  // -------------------------------------------------
-
-  float pauseButtonX = offsetX + 23 * scaleFactor;
-  float pauseButtonY = offsetY + 46 * scaleFactor;
+  float pauseButtonX = offsetX + 30 * scaleFactor;
+  float pauseButtonY = offsetY + 48 * scaleFactor;
   float pauseButtonWidth = 10 * scaleFactor;
   float pauseButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // FAST FORWARD BUTTON
-  // -------------------------------------------------
-
-  float fastForwardButtonX = offsetX + 13 * scaleFactor;
-  float fastForwardButtonY = offsetY + 56 * scaleFactor;
+  float fastForwardButtonX = offsetX + 16 * scaleFactor;
+  float fastForwardButtonY = offsetY + 62 * scaleFactor;
   float fastForwardButtonWidth = 10 * scaleFactor;
   float fastForwardButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // REWIND BUTTON
-  // -------------------------------------------------
-
-  float rewindButtonX = offsetX + 23 * scaleFactor;
-  float rewindButtonY = offsetY + 56 * scaleFactor;
+  float rewindButtonX = offsetX + 30 * scaleFactor;
+  float rewindButtonY = offsetY + 62 * scaleFactor;
   float rewindButtonWidth = 10 * scaleFactor;
   float rewindButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // SHUFFLE BUTTON
-  // -------------------------------------------------
-
-  float shuffleButtonX = offsetX + 13 * scaleFactor;
-  float shuffleButtonY = offsetY + 66 * scaleFactor;
+  float shuffleButtonX = offsetX + 16 * scaleFactor;
+  float shuffleButtonY = offsetY + 76 * scaleFactor;
   float shuffleButtonWidth = 10 * scaleFactor;
   float shuffleButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // LOOP BUTTON
-  // -------------------------------------------------
-
-  float loopButtonX = offsetX + 23 * scaleFactor;
-  float loopButtonY = offsetY + 66 * scaleFactor;
+  float loopButtonX = offsetX + 30 * scaleFactor;
+  float loopButtonY = offsetY + 76 * scaleFactor;
   float loopButtonWidth = 10 * scaleFactor;
   float loopButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // FAVORITE BUTTON
-  // -------------------------------------------------
-
-  float favoriteButtonX = offsetX + 13 * scaleFactor;
-  float favoriteButtonY = offsetY + 76 * scaleFactor;
+  float favoriteButtonX = offsetX + 16 * scaleFactor;
+  float favoriteButtonY = offsetY + 90 * scaleFactor;
   float favoriteButtonWidth = 10 * scaleFactor;
   float favoriteButtonHeight = 10 * scaleFactor;
 
-  // -------------------------------------------------
-  // BOOKMARK BUTTON
-  // -------------------------------------------------
-
-  float bookmarkButtonX = offsetX + 23 * scaleFactor;
-  float bookmarkButtonY = offsetY + 76 * scaleFactor;
+  float bookmarkButtonX = offsetX + 30 * scaleFactor;
+  float bookmarkButtonY = offsetY + 90 * scaleFactor;
   float bookmarkButtonWidth = 10 * scaleFactor;
   float bookmarkButtonHeight = 10 * scaleFactor;
 
@@ -204,265 +162,241 @@ void draw() {
   stroke(0);
   fill(255);
 
-  rect(songTitleOuterBoxX, songTitleOuterBoxY, songTitleOuterBoxWidth, songTitleOuterBoxHeight, 3);
-  rect(songTitleTextBoxX, songTitleTextBoxY, songTitleTextBoxWidth, songTitleTextBoxHeight, 3);
-  rect(artistNameBoxX, artistNameBoxY, artistNameBoxWidth, artistNameBoxHeight, 3);
-  rect(closeButtonX, closeButtonY, closeButtonWidth, closeButtonHeight, 3);
-  rect(progressBarX, progressBarY, progressBarWidth, progressBarHeight, 3);
-  rect(lyricsSectionX, lyricsSectionY, lyricsSectionWidth, lyricsSectionHeight, 3);
-  rect(imageDisplayBoxX, imageDisplayBoxY, imageDisplayBoxWidth, imageDisplayBoxHeight, 3);
+  rect(songTitleOuterBoxX,
+       songTitleOuterBoxY,
+       songTitleOuterBoxWidth,
+       songTitleOuterBoxHeight);
 
-  rect(playButtonX, playButtonY, playButtonWidth, playButtonHeight, 3);
-  rect(pauseButtonX, pauseButtonY, pauseButtonWidth, pauseButtonHeight, 3);
-  rect(fastForwardButtonX, fastForwardButtonY, fastForwardButtonWidth, fastForwardButtonHeight, 3);
-  rect(rewindButtonX, rewindButtonY, rewindButtonWidth, rewindButtonHeight, 3);
-  rect(shuffleButtonX, shuffleButtonY, shuffleButtonWidth, shuffleButtonHeight, 3);
-  rect(loopButtonX, loopButtonY, loopButtonWidth, loopButtonHeight, 3);
-  rect(favoriteButtonX, favoriteButtonY, favoriteButtonWidth, favoriteButtonHeight, 3);
-  rect(bookmarkButtonX, bookmarkButtonY, bookmarkButtonWidth, bookmarkButtonHeight, 3);
+  rect(songTitleTextBoxX,
+       songTitleTextBoxY,
+       songTitleTextBoxWidth,
+       songTitleTextBoxHeight);
+
+  rect(artistNameBoxX,
+       artistNameBoxY,
+       artistNameBoxWidth,
+       artistNameBoxHeight);
+
+  rect(closeButtonX,
+       closeButtonY,
+       closeButtonWidth,
+       closeButtonHeight);
+
+  rect(progressBarX,
+       progressBarY,
+       progressBarWidth,
+       progressBarHeight);
+
+  rect(lyricsSectionX,
+       lyricsSectionY,
+       lyricsSectionWidth,
+       lyricsSectionHeight);
+
+  rect(imageDisplayBoxX,
+       imageDisplayBoxY,
+       imageDisplayBoxWidth,
+       imageDisplayBoxHeight);
+
+  rect(playButtonX,
+       playButtonY,
+       playButtonWidth,
+       playButtonHeight);
+
+  rect(pauseButtonX,
+       pauseButtonY,
+       pauseButtonWidth,
+       pauseButtonHeight);
+
+  rect(fastForwardButtonX,
+       fastForwardButtonY,
+       fastForwardButtonWidth,
+       fastForwardButtonHeight);
+
+  rect(rewindButtonX,
+       rewindButtonY,
+       rewindButtonWidth,
+       rewindButtonHeight);
+
+  rect(shuffleButtonX,
+       shuffleButtonY,
+       shuffleButtonWidth,
+       shuffleButtonHeight);
+
+  rect(loopButtonX,
+       loopButtonY,
+       loopButtonWidth,
+       loopButtonHeight);
+
+  rect(favoriteButtonX,
+       favoriteButtonY,
+       favoriteButtonWidth,
+       favoriteButtonHeight);
+
+  rect(bookmarkButtonX,
+       bookmarkButtonY,
+       bookmarkButtonWidth,
+       bookmarkButtonHeight);
 
   // -------------------------------------------------
-  // IMAGE VARIABLES
+  // IMAGE
   // -------------------------------------------------
 
-  float imageScale = min(imageDisplayBoxWidth / image1.width,
-                         imageDisplayBoxHeight / image1.height);
+  if (image1 != null) {
 
-  float imageWidth = image1.width * imageScale;
-  float imageHeight = image1.height * imageScale;
+    image(image1,
+          imageDisplayBoxX,
+          imageDisplayBoxY,
+          imageDisplayBoxWidth,
+          imageDisplayBoxHeight);
 
-  float imageX = imageDisplayBoxX + (imageDisplayBoxWidth - imageWidth) / 2;
-  float imageY = imageDisplayBoxY + (imageDisplayBoxHeight - imageHeight) / 2;
+  } else {
 
-  // -------------------------------------------------
-  // DRAW IMAGE
-  // -------------------------------------------------
+    fill(0);
+    textSize(20);
 
-  clip((int)imageDisplayBoxX,
-       (int)imageDisplayBoxY,
-       (int)imageDisplayBoxWidth,
-       (int)imageDisplayBoxHeight);
-
-  image(image1, imageX, imageY, imageWidth, imageHeight);
-
-  noClip();
+    text("IMAGE MISSING",
+         imageDisplayBoxX + 10,
+         imageDisplayBoxY + 30);
+  }
 
   // -------------------------------------------------
-  // PLAY SYMBOL
+  // SYMBOLS
   // -------------------------------------------------
-
-  float playSymbolDivX1 = playButtonX + playButtonWidth * 1/4;
-  float playSymbolDivY1 = playButtonY + playButtonHeight * 1/4;
-
-  float playSymbolDivX2 = playButtonX + playButtonWidth * 3/4;
-  float playSymbolDivY2 = playButtonY + playButtonHeight * 1/2;
-
-  float playSymbolDivX3 = playButtonX + playButtonWidth * 1/4;
-  float playSymbolDivY3 = playButtonY + playButtonHeight * 3/4;
 
   fill(0);
+  noStroke();
 
-  triangle(playSymbolDivX1,
-           playSymbolDivY1,
-           playSymbolDivX2,
-           playSymbolDivY2,
-           playSymbolDivX3,
-           playSymbolDivY3);
+  // PLAY
 
-  // -------------------------------------------------
-  // PAUSE SYMBOL
-  // -------------------------------------------------
+  triangle(playButtonX + playButtonWidth * 0.25,
+           playButtonY + playButtonHeight * 0.2,
 
-  float pauseSymbolDivX1 = pauseButtonX + pauseButtonWidth * 1/4;
-  float pauseSymbolDivY1 = pauseButtonY + pauseButtonHeight * 1/5;
-  float pauseSymbolDivWidth1 = pauseButtonWidth * 1/5;
-  float pauseSymbolDivHeight1 = pauseButtonHeight * 3/5;
+           playButtonX + playButtonWidth * 0.75,
+           playButtonY + playButtonHeight * 0.5,
 
-  float pauseSymbolDivX2 = pauseButtonX + pauseButtonWidth * 3/5;
-  float pauseSymbolDivY2 = pauseButtonY + pauseButtonHeight * 1/5;
-  float pauseSymbolDivWidth2 = pauseButtonWidth * 1/5;
-  float pauseSymbolDivHeight2 = pauseButtonHeight * 3/5;
+           playButtonX + playButtonWidth * 0.25,
+           playButtonY + playButtonHeight * 0.8);
 
-  rect(pauseSymbolDivX1,
-       pauseSymbolDivY1,
-       pauseSymbolDivWidth1,
-       pauseSymbolDivHeight1);
+  // PAUSE
 
-  rect(pauseSymbolDivX2,
-       pauseSymbolDivY2,
-       pauseSymbolDivWidth2,
-       pauseSymbolDivHeight2);
-       // -------------------------------------------------
-// FAST FORWARD SYMBOL
-// -------------------------------------------------
+  rect(pauseButtonX + pauseButtonWidth * 0.25,
+       pauseButtonY + pauseButtonHeight * 0.2,
+       pauseButtonWidth * 0.15,
+       pauseButtonHeight * 0.6);
 
-float fastForwardSymbolX1 = fastForwardButtonX + fastForwardButtonWidth * 0.15;
-float fastForwardSymbolY1 = fastForwardButtonY + fastForwardButtonHeight * 0.2;
+  rect(pauseButtonX + pauseButtonWidth * 0.60,
+       pauseButtonY + pauseButtonHeight * 0.2,
+       pauseButtonWidth * 0.15,
+       pauseButtonHeight * 0.6);
 
-float fastForwardSymbolX2 = fastForwardButtonX + fastForwardButtonWidth * 0.45;
-float fastForwardSymbolY2 = fastForwardButtonY + fastForwardButtonHeight * 0.5;
+  // FAST FORWARD
 
-float fastForwardSymbolX3 = fastForwardButtonX + fastForwardButtonWidth * 0.15;
-float fastForwardSymbolY3 = fastForwardButtonY + fastForwardButtonHeight * 0.8;
+  triangle(fastForwardButtonX + fastForwardButtonWidth * 0.10,
+           fastForwardButtonY + fastForwardButtonHeight * 0.2,
 
-triangle(fastForwardSymbolX1,
-         fastForwardSymbolY1,
-         fastForwardSymbolX2,
-         fastForwardSymbolY2,
-         fastForwardSymbolX3,
-         fastForwardSymbolY3);
+           fastForwardButtonX + fastForwardButtonWidth * 0.45,
+           fastForwardButtonY + fastForwardButtonHeight * 0.5,
 
-float fastForwardSymbolX4 = fastForwardButtonX + fastForwardButtonWidth * 0.45;
-float fastForwardSymbolY4 = fastForwardButtonY + fastForwardButtonHeight * 0.2;
+           fastForwardButtonX + fastForwardButtonWidth * 0.10,
+           fastForwardButtonY + fastForwardButtonHeight * 0.8);
 
-float fastForwardSymbolX5 = fastForwardButtonX + fastForwardButtonWidth * 0.75;
-float fastForwardSymbolY5 = fastForwardButtonY + fastForwardButtonHeight * 0.5;
+  triangle(fastForwardButtonX + fastForwardButtonWidth * 0.40,
+           fastForwardButtonY + fastForwardButtonHeight * 0.2,
 
-float fastForwardSymbolX6 = fastForwardButtonX + fastForwardButtonWidth * 0.45;
-float fastForwardSymbolY6 = fastForwardButtonY + fastForwardButtonHeight * 0.8;
+           fastForwardButtonX + fastForwardButtonWidth * 0.75,
+           fastForwardButtonY + fastForwardButtonHeight * 0.5,
 
-triangle(fastForwardSymbolX4,
-         fastForwardSymbolY4,
-         fastForwardSymbolX5,
-         fastForwardSymbolY5,
-         fastForwardSymbolX6,
-         fastForwardSymbolY6);
+           fastForwardButtonX + fastForwardButtonWidth * 0.40,
+           fastForwardButtonY + fastForwardButtonHeight * 0.8);
 
-// -------------------------------------------------
-// REWIND SYMBOL
-// -------------------------------------------------
+  // REWIND
 
-float rewindSymbolX1 = rewindButtonX + rewindButtonWidth * 0.85;
-float rewindSymbolY1 = rewindButtonY + rewindButtonHeight * 0.2;
+  triangle(rewindButtonX + rewindButtonWidth * 0.90,
+           rewindButtonY + rewindButtonHeight * 0.2,
 
-float rewindSymbolX2 = rewindButtonX + rewindButtonWidth * 0.55;
-float rewindSymbolY2 = rewindButtonY + rewindButtonHeight * 0.5;
+           rewindButtonX + rewindButtonWidth * 0.55,
+           rewindButtonY + rewindButtonHeight * 0.5,
 
-float rewindSymbolX3 = rewindButtonX + rewindButtonWidth * 0.85;
-float rewindSymbolY3 = rewindButtonY + rewindButtonHeight * 0.8;
+           rewindButtonX + rewindButtonWidth * 0.90,
+           rewindButtonY + rewindButtonHeight * 0.8);
 
-triangle(rewindSymbolX1,
-         rewindSymbolY1,
-         rewindSymbolX2,
-         rewindSymbolY2,
-         rewindSymbolX3,
-         rewindSymbolY3);
+  triangle(rewindButtonX + rewindButtonWidth * 0.60,
+           rewindButtonY + rewindButtonHeight * 0.2,
 
-float rewindSymbolX4 = rewindButtonX + rewindButtonWidth * 0.55;
-float rewindSymbolY4 = rewindButtonY + rewindButtonHeight * 0.2;
+           rewindButtonX + rewindButtonWidth * 0.25,
+           rewindButtonY + rewindButtonHeight * 0.5,
 
-float rewindSymbolX5 = rewindButtonX + rewindButtonWidth * 0.25;
-float rewindSymbolY5 = rewindButtonY + rewindButtonHeight * 0.5;
+           rewindButtonX + rewindButtonWidth * 0.60,
+           rewindButtonY + rewindButtonHeight * 0.8);
 
-float rewindSymbolX6 = rewindButtonX + rewindButtonWidth * 0.55;
-float rewindSymbolY6 = rewindButtonY + rewindButtonHeight * 0.8;
+  // SHUFFLE
 
-triangle(rewindSymbolX4,
-         rewindSymbolY4,
-         rewindSymbolX5,
-         rewindSymbolY5,
-         rewindSymbolX6,
-         rewindSymbolY6);
+  stroke(0);
 
-// -------------------------------------------------
-// SHUFFLE SYMBOL
-// -------------------------------------------------
+  line(shuffleButtonX + shuffleButtonWidth * 0.2,
+       shuffleButtonY + shuffleButtonHeight * 0.2,
 
-stroke(0);
+       shuffleButtonX + shuffleButtonWidth * 0.8,
+       shuffleButtonY + shuffleButtonHeight * 0.8);
 
-float shuffleSymbolX1 = shuffleButtonX + shuffleButtonWidth * 0.2;
-float shuffleSymbolY1 = shuffleButtonY + shuffleButtonHeight * 0.2;
+  line(shuffleButtonX + shuffleButtonWidth * 0.2,
+       shuffleButtonY + shuffleButtonHeight * 0.8,
 
-float shuffleSymbolX2 = shuffleButtonX + shuffleButtonWidth * 0.8;
-float shuffleSymbolY2 = shuffleButtonY + shuffleButtonHeight * 0.8;
+       shuffleButtonX + shuffleButtonWidth * 0.8,
+       shuffleButtonY + shuffleButtonHeight * 0.2);
 
-line(shuffleSymbolX1,
-     shuffleSymbolY1,
-     shuffleSymbolX2,
-     shuffleSymbolY2);
+  // LOOP
 
-float shuffleSymbolX3 = shuffleButtonX + shuffleButtonWidth * 0.2;
-float shuffleSymbolY3 = shuffleButtonY + shuffleButtonHeight * 0.8;
+  noFill();
 
-float shuffleSymbolX4 = shuffleButtonX + shuffleButtonWidth * 0.8;
-float shuffleSymbolY4 = shuffleButtonY + shuffleButtonHeight * 0.2;
+  arc(loopButtonX + loopButtonWidth * 0.5,
+      loopButtonY + loopButtonHeight * 0.5,
+      loopButtonWidth * 0.55,
+      loopButtonHeight * 0.55,
+      radians(40),
+      radians(340));
 
-line(shuffleSymbolX3,
-     shuffleSymbolY3,
-     shuffleSymbolX4,
-     shuffleSymbolY4);
+  // FAVORITE
 
-// -------------------------------------------------
-// LOOP SYMBOL
-// -------------------------------------------------
+  fill(0);
+  noStroke();
 
-noFill();
+  ellipse(favoriteButtonX + favoriteButtonWidth * 0.35,
+          favoriteButtonY + favoriteButtonHeight * 0.40,
+          favoriteButtonWidth * 0.25,
+          favoriteButtonHeight * 0.25);
 
-float loopSymbolX = loopButtonX + loopButtonWidth * 0.5;
-float loopSymbolY = loopButtonY + loopButtonHeight * 0.5;
+  ellipse(favoriteButtonX + favoriteButtonWidth * 0.65,
+          favoriteButtonY + favoriteButtonHeight * 0.40,
+          favoriteButtonWidth * 0.25,
+          favoriteButtonHeight * 0.25);
 
-float loopSymbolWidth = loopButtonWidth * 0.55;
-float loopSymbolHeight = loopButtonHeight * 0.55;
+  triangle(favoriteButtonX + favoriteButtonWidth * 0.2,
+           favoriteButtonY + favoriteButtonHeight * 0.45,
 
-arc(loopSymbolX,
-    loopSymbolY,
-    loopSymbolWidth,
-    loopSymbolHeight,
-    radians(40),
-    radians(340));
+           favoriteButtonX + favoriteButtonWidth * 0.8,
+           favoriteButtonY + favoriteButtonHeight * 0.45,
 
-// -------------------------------------------------
-// FAVORITE SYMBOL
-// -------------------------------------------------
+           favoriteButtonX + favoriteButtonWidth * 0.5,
+           favoriteButtonY + favoriteButtonHeight * 0.8);
 
-fill(0);
-noStroke();
+  // BOOKMARK
 
-float favoriteHeartX = favoriteButtonX + favoriteButtonWidth * 0.5;
-float favoriteHeartY = favoriteButtonY + favoriteButtonHeight * 0.5;
+  rect(bookmarkButtonX + bookmarkButtonWidth * 0.3,
+       bookmarkButtonY + bookmarkButtonHeight * 0.15,
+       bookmarkButtonWidth * 0.4,
+       bookmarkButtonHeight * 0.45);
 
-ellipse(favoriteHeartX - favoriteButtonWidth * 0.15,
-        favoriteHeartY - favoriteButtonHeight * 0.08,
-        favoriteButtonWidth * 0.3,
-        favoriteButtonHeight * 0.3);
+  triangle(bookmarkButtonX + bookmarkButtonWidth * 0.3,
+           bookmarkButtonY + bookmarkButtonHeight * 0.6,
 
-ellipse(favoriteHeartX + favoriteButtonWidth * 0.15,
-        favoriteHeartY - favoriteButtonHeight * 0.08,
-        favoriteButtonWidth * 0.3,
-        favoriteButtonHeight * 0.3);
+           bookmarkButtonX + bookmarkButtonWidth * 0.7,
+           bookmarkButtonY + bookmarkButtonHeight * 0.6,
 
-triangle(favoriteHeartX - favoriteButtonWidth * 0.3,
-         favoriteHeartY,
-         favoriteHeartX + favoriteButtonWidth * 0.3,
-         favoriteHeartY,
-         favoriteHeartX,
-         favoriteHeartY + favoriteButtonHeight * 0.3);
+           bookmarkButtonX + bookmarkButtonWidth * 0.5,
+           bookmarkButtonY + bookmarkButtonHeight * 0.85);
 
-// -------------------------------------------------
-// BOOKMARK SYMBOL
-// -------------------------------------------------
-
-float bookmarkSymbolX = bookmarkButtonX + bookmarkButtonWidth * 0.25;
-float bookmarkSymbolY = bookmarkButtonY + bookmarkButtonHeight * 0.1;
-
-float bookmarkSymbolWidth = bookmarkButtonWidth * 0.5;
-float bookmarkSymbolHeight = bookmarkButtonHeight * 0.5;
-
-rect(bookmarkSymbolX,
-     bookmarkSymbolY,
-     bookmarkSymbolWidth,
-     bookmarkSymbolHeight);
-
-triangle(bookmarkSymbolX,
-         bookmarkSymbolY + bookmarkSymbolHeight,
-         bookmarkSymbolX + bookmarkSymbolWidth,
-         bookmarkSymbolY + bookmarkSymbolHeight,
-         bookmarkSymbolX + bookmarkSymbolWidth * 0.5,
-         bookmarkButtonY + bookmarkButtonHeight * 0.85);
-
-  // -------------------------------------------------
   // X SYMBOL
-  // -------------------------------------------------
 
   fill(0);
 
@@ -470,20 +404,12 @@ triangle(bookmarkSymbolX,
   textSize(closeButtonHeight * 0.8);
 
   text("X",
-       closeButtonX + closeButtonWidth / 2,
-       closeButtonY + closeButtonHeight / 2);
+       closeButtonX + closeButtonWidth / 2.0,
+       closeButtonY + closeButtonHeight / 2.0);
 }
-
-// -------------------------------------------------
-// MOUSE PRESSED
-// -------------------------------------------------
 
 void mousePressed() {
 }
-
-// -------------------------------------------------
-// KEY PRESSED
-// -------------------------------------------------
 
 void keyPressed() {
 }
