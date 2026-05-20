@@ -9,10 +9,35 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //
-/* Music App */
+/* 
+-------------------------------------------------
+MUSIC APP
+-------------------------------------------------
+REQUIRES:
+- Minim Library
+- data folder
+- 67-kid.jpg
+- SoccerBall.jpg
+- Eureka.mp3
+-------------------------------------------------
+*/
+
+import ddf.minim.*;
+
+// -------------------------------------------------
+// GLOBAL VARIABLES
+// -------------------------------------------------
+
+Minim minim;
 
 PImage image1;
 PImage image2;
+
+int numberOfSongs = 2;
+
+AudioPlayer[] playList = new AudioPlayer[numberOfSongs];
+
+int currentSong = 0;
 
 // -------------------------------------------------
 // SETUP
@@ -20,15 +45,40 @@ PImage image2;
 
 void setup() {
 
-  size(455, 900);
+  size(450, 900);
 
   smooth();
 
-  // IMAGES MUST BE INSIDE:
-  // sketchFolder/data/
+  // -------------------------------------------------
+  // LOAD IMAGES
+  // -------------------------------------------------
 
   image1 = loadImage("67-kid.jpg");
   image2 = loadImage("SoccerBall.jpg");
+
+  // -------------------------------------------------
+  // MINIM
+  // -------------------------------------------------
+
+  minim = new Minim(this);
+
+// -------------------------------------------------
+// LOAD MUSIC
+// -------------------------------------------------
+
+playList[0] = minim.loadFile("Eureka.mp3");
+
+playList[1] = minim.loadFile("Start_Engine.mp3");
+
+  // -------------------------------------------------
+  // ERROR CHECK
+  // -------------------------------------------------
+
+  if (playList[0] == null) {
+
+    println("SONG FAILED TO LOAD");
+    exit();
+  }
 }
 
 // -------------------------------------------------
@@ -37,7 +87,7 @@ void setup() {
 
 void draw() {
 
-  background(180);
+  background(170, 110, 120);
 
   float appWidth = width;
   float appHeight = height;
@@ -49,7 +99,6 @@ void draw() {
   float paperWidth = 142.0;
   float paperHeight = 280.0;
 
-  // THIS FIXES THE GREY SIDES
   float scaleFactor = appHeight / paperHeight;
 
   float offsetX = (appWidth - paperWidth * scaleFactor) / 2.0;
@@ -62,14 +111,13 @@ void draw() {
   fill(255);
   stroke(0);
 
-  // REMOVED ROUNDED CORNERS
   rect(offsetX,
        offsetY,
        paperWidth * scaleFactor,
        paperHeight * scaleFactor);
 
   // -------------------------------------------------
-  // MAIN BOXES
+  // SONG TITLE BOXES
   // -------------------------------------------------
 
   float songTitleOuterBoxX = offsetX + 30 * scaleFactor;
@@ -87,15 +135,31 @@ void draw() {
   float artistNameBoxWidth = 50 * scaleFactor;
   float artistNameBoxHeight = 7 * scaleFactor;
 
-  float closeButtonX = offsetX + 131 * scaleFactor;
-  float closeButtonY = offsetY + 7 * scaleFactor;
-  float closeButtonWidth = 7 * scaleFactor;
-  float closeButtonHeight = 7 * scaleFactor;
+  // -------------------------------------------------
+  // X BUTTON
+  // -------------------------------------------------
+
+  float closeButtonWidth = 8 * scaleFactor;
+  float closeButtonHeight = 8 * scaleFactor;
+
+  float closeButtonX = offsetX +
+                       (paperWidth * scaleFactor) -
+                       closeButtonWidth;
+
+  float closeButtonY = offsetY;
+
+  // -------------------------------------------------
+  // PROGRESS BAR
+  // -------------------------------------------------
 
   float progressBarX = offsetX + 13 * scaleFactor;
   float progressBarY = offsetY + 30 * scaleFactor;
   float progressBarWidth = 120 * scaleFactor;
   float progressBarHeight = 13 * scaleFactor;
+
+  // -------------------------------------------------
+  // LYRICS BOX
+  // -------------------------------------------------
 
   float lyricsSectionX = offsetX + 52 * scaleFactor;
   float lyricsSectionY = offsetY + 46 * scaleFactor;
@@ -115,52 +179,38 @@ void draw() {
   // BUTTONS
   // -------------------------------------------------
 
+  float buttonSize = 10 * scaleFactor;
+
   float playButtonX = offsetX + 16 * scaleFactor;
   float playButtonY = offsetY + 48 * scaleFactor;
-  float playButtonWidth = 10 * scaleFactor;
-  float playButtonHeight = 10 * scaleFactor;
 
   float pauseButtonX = offsetX + 30 * scaleFactor;
   float pauseButtonY = offsetY + 48 * scaleFactor;
-  float pauseButtonWidth = 10 * scaleFactor;
-  float pauseButtonHeight = 10 * scaleFactor;
 
   float fastForwardButtonX = offsetX + 16 * scaleFactor;
   float fastForwardButtonY = offsetY + 62 * scaleFactor;
-  float fastForwardButtonWidth = 10 * scaleFactor;
-  float fastForwardButtonHeight = 10 * scaleFactor;
 
   float rewindButtonX = offsetX + 30 * scaleFactor;
   float rewindButtonY = offsetY + 62 * scaleFactor;
-  float rewindButtonWidth = 10 * scaleFactor;
-  float rewindButtonHeight = 10 * scaleFactor;
 
   float shuffleButtonX = offsetX + 16 * scaleFactor;
   float shuffleButtonY = offsetY + 76 * scaleFactor;
-  float shuffleButtonWidth = 10 * scaleFactor;
-  float shuffleButtonHeight = 10 * scaleFactor;
 
   float loopButtonX = offsetX + 30 * scaleFactor;
   float loopButtonY = offsetY + 76 * scaleFactor;
-  float loopButtonWidth = 10 * scaleFactor;
-  float loopButtonHeight = 10 * scaleFactor;
 
   float favoriteButtonX = offsetX + 16 * scaleFactor;
   float favoriteButtonY = offsetY + 90 * scaleFactor;
-  float favoriteButtonWidth = 10 * scaleFactor;
-  float favoriteButtonHeight = 10 * scaleFactor;
 
   float bookmarkButtonX = offsetX + 30 * scaleFactor;
   float bookmarkButtonY = offsetY + 90 * scaleFactor;
-  float bookmarkButtonWidth = 10 * scaleFactor;
-  float bookmarkButtonHeight = 10 * scaleFactor;
 
   // -------------------------------------------------
-  // DRAW BOXES
+  // DRAW RECTANGLES
   // -------------------------------------------------
 
-  stroke(0);
   fill(255);
+  stroke(0);
 
   rect(songTitleOuterBoxX,
        songTitleOuterBoxY,
@@ -197,45 +247,39 @@ void draw() {
        imageDisplayBoxWidth,
        imageDisplayBoxHeight);
 
-  rect(playButtonX,
-       playButtonY,
-       playButtonWidth,
-       playButtonHeight);
+  rect(playButtonX, playButtonY, buttonSize, buttonSize);
 
-  rect(pauseButtonX,
-       pauseButtonY,
-       pauseButtonWidth,
-       pauseButtonHeight);
+  rect(pauseButtonX, pauseButtonY, buttonSize, buttonSize);
 
   rect(fastForwardButtonX,
        fastForwardButtonY,
-       fastForwardButtonWidth,
-       fastForwardButtonHeight);
+       buttonSize,
+       buttonSize);
 
   rect(rewindButtonX,
        rewindButtonY,
-       rewindButtonWidth,
-       rewindButtonHeight);
+       buttonSize,
+       buttonSize);
 
   rect(shuffleButtonX,
        shuffleButtonY,
-       shuffleButtonWidth,
-       shuffleButtonHeight);
+       buttonSize,
+       buttonSize);
 
   rect(loopButtonX,
        loopButtonY,
-       loopButtonWidth,
-       loopButtonHeight);
+       buttonSize,
+       buttonSize);
 
   rect(favoriteButtonX,
        favoriteButtonY,
-       favoriteButtonWidth,
-       favoriteButtonHeight);
+       buttonSize,
+       buttonSize);
 
   rect(bookmarkButtonX,
        bookmarkButtonY,
-       bookmarkButtonWidth,
-       bookmarkButtonHeight);
+       buttonSize,
+       buttonSize);
 
   // -------------------------------------------------
   // IMAGE
@@ -248,168 +292,284 @@ void draw() {
           imageDisplayBoxY,
           imageDisplayBoxWidth,
           imageDisplayBoxHeight);
-
-  } else {
-
-    fill(0);
-    textSize(20);
-
-    text("IMAGE MISSING",
-         imageDisplayBoxX + 10,
-         imageDisplayBoxY + 30);
   }
 
   // -------------------------------------------------
-  // SYMBOLS
+  // SONG TITLE
   // -------------------------------------------------
-
-  fill(0);
-  noStroke();
-
-  // PLAY
-
-  triangle(playButtonX + playButtonWidth * 0.25,
-           playButtonY + playButtonHeight * 0.2,
-
-           playButtonX + playButtonWidth * 0.75,
-           playButtonY + playButtonHeight * 0.5,
-
-           playButtonX + playButtonWidth * 0.25,
-           playButtonY + playButtonHeight * 0.8);
-
-  // PAUSE
-
-  rect(pauseButtonX + pauseButtonWidth * 0.25,
-       pauseButtonY + pauseButtonHeight * 0.2,
-       pauseButtonWidth * 0.15,
-       pauseButtonHeight * 0.6);
-
-  rect(pauseButtonX + pauseButtonWidth * 0.60,
-       pauseButtonY + pauseButtonHeight * 0.2,
-       pauseButtonWidth * 0.15,
-       pauseButtonHeight * 0.6);
-
-  // FAST FORWARD
-
-  triangle(fastForwardButtonX + fastForwardButtonWidth * 0.10,
-           fastForwardButtonY + fastForwardButtonHeight * 0.2,
-
-           fastForwardButtonX + fastForwardButtonWidth * 0.45,
-           fastForwardButtonY + fastForwardButtonHeight * 0.5,
-
-           fastForwardButtonX + fastForwardButtonWidth * 0.10,
-           fastForwardButtonY + fastForwardButtonHeight * 0.8);
-
-  triangle(fastForwardButtonX + fastForwardButtonWidth * 0.40,
-           fastForwardButtonY + fastForwardButtonHeight * 0.2,
-
-           fastForwardButtonX + fastForwardButtonWidth * 0.75,
-           fastForwardButtonY + fastForwardButtonHeight * 0.5,
-
-           fastForwardButtonX + fastForwardButtonWidth * 0.40,
-           fastForwardButtonY + fastForwardButtonHeight * 0.8);
-
-  // REWIND
-
-  triangle(rewindButtonX + rewindButtonWidth * 0.90,
-           rewindButtonY + rewindButtonHeight * 0.2,
-
-           rewindButtonX + rewindButtonWidth * 0.55,
-           rewindButtonY + rewindButtonHeight * 0.5,
-
-           rewindButtonX + rewindButtonWidth * 0.90,
-           rewindButtonY + rewindButtonHeight * 0.8);
-
-  triangle(rewindButtonX + rewindButtonWidth * 0.60,
-           rewindButtonY + rewindButtonHeight * 0.2,
-
-           rewindButtonX + rewindButtonWidth * 0.25,
-           rewindButtonY + rewindButtonHeight * 0.5,
-
-           rewindButtonX + rewindButtonWidth * 0.60,
-           rewindButtonY + rewindButtonHeight * 0.8);
-
-  // SHUFFLE
-
-  stroke(0);
-
-  line(shuffleButtonX + shuffleButtonWidth * 0.2,
-       shuffleButtonY + shuffleButtonHeight * 0.2,
-
-       shuffleButtonX + shuffleButtonWidth * 0.8,
-       shuffleButtonY + shuffleButtonHeight * 0.8);
-
-  line(shuffleButtonX + shuffleButtonWidth * 0.2,
-       shuffleButtonY + shuffleButtonHeight * 0.8,
-
-       shuffleButtonX + shuffleButtonWidth * 0.8,
-       shuffleButtonY + shuffleButtonHeight * 0.2);
-
-  // LOOP
-
-  noFill();
-
-  arc(loopButtonX + loopButtonWidth * 0.5,
-      loopButtonY + loopButtonHeight * 0.5,
-      loopButtonWidth * 0.55,
-      loopButtonHeight * 0.55,
-      radians(40),
-      radians(340));
-
-  // FAVORITE
-
-  fill(0);
-  noStroke();
-
-  ellipse(favoriteButtonX + favoriteButtonWidth * 0.35,
-          favoriteButtonY + favoriteButtonHeight * 0.40,
-          favoriteButtonWidth * 0.25,
-          favoriteButtonHeight * 0.25);
-
-  ellipse(favoriteButtonX + favoriteButtonWidth * 0.65,
-          favoriteButtonY + favoriteButtonHeight * 0.40,
-          favoriteButtonWidth * 0.25,
-          favoriteButtonHeight * 0.25);
-
-  triangle(favoriteButtonX + favoriteButtonWidth * 0.2,
-           favoriteButtonY + favoriteButtonHeight * 0.45,
-
-           favoriteButtonX + favoriteButtonWidth * 0.8,
-           favoriteButtonY + favoriteButtonHeight * 0.45,
-
-           favoriteButtonX + favoriteButtonWidth * 0.5,
-           favoriteButtonY + favoriteButtonHeight * 0.8);
-
-  // BOOKMARK
-
-  rect(bookmarkButtonX + bookmarkButtonWidth * 0.3,
-       bookmarkButtonY + bookmarkButtonHeight * 0.15,
-       bookmarkButtonWidth * 0.4,
-       bookmarkButtonHeight * 0.45);
-
-  triangle(bookmarkButtonX + bookmarkButtonWidth * 0.3,
-           bookmarkButtonY + bookmarkButtonHeight * 0.6,
-
-           bookmarkButtonX + bookmarkButtonWidth * 0.7,
-           bookmarkButtonY + bookmarkButtonHeight * 0.6,
-
-           bookmarkButtonX + bookmarkButtonWidth * 0.5,
-           bookmarkButtonY + bookmarkButtonHeight * 0.85);
-
-  // X SYMBOL
 
   fill(0);
 
   textAlign(CENTER, CENTER);
-  textSize(closeButtonHeight * 0.8);
+
+  textSize(18);
+
+  text("EUREKA",
+       songTitleTextBoxX + songTitleTextBoxWidth / 2,
+       songTitleTextBoxY + songTitleTextBoxHeight / 2);
+
+  textSize(12);
+
+  text("Artist",
+       artistNameBoxX + artistNameBoxWidth / 2,
+       artistNameBoxY + artistNameBoxHeight / 2);
+
+  // -------------------------------------------------
+  // PLAY SYMBOL
+  // -------------------------------------------------
+
+  triangle(playButtonX + buttonSize * 0.25,
+           playButtonY + buttonSize * 0.2,
+
+           playButtonX + buttonSize * 0.75,
+           playButtonY + buttonSize * 0.5,
+
+           playButtonX + buttonSize * 0.25,
+           playButtonY + buttonSize * 0.8);
+
+  // -------------------------------------------------
+  // PAUSE SYMBOL
+  // -------------------------------------------------
+
+  rect(pauseButtonX + buttonSize * 0.25,
+       pauseButtonY + buttonSize * 0.2,
+       buttonSize * 0.15,
+       buttonSize * 0.6);
+
+  rect(pauseButtonX + buttonSize * 0.60,
+       pauseButtonY + buttonSize * 0.2,
+       buttonSize * 0.15,
+       buttonSize * 0.6);
+
+  // -------------------------------------------------
+  // FAST FORWARD
+  // -------------------------------------------------
+
+  triangle(fastForwardButtonX + buttonSize * 0.10,
+           fastForwardButtonY + buttonSize * 0.2,
+
+           fastForwardButtonX + buttonSize * 0.45,
+           fastForwardButtonY + buttonSize * 0.5,
+
+           fastForwardButtonX + buttonSize * 0.10,
+           fastForwardButtonY + buttonSize * 0.8);
+
+  triangle(fastForwardButtonX + buttonSize * 0.40,
+           fastForwardButtonY + buttonSize * 0.2,
+
+           fastForwardButtonX + buttonSize * 0.75,
+           fastForwardButtonY + buttonSize * 0.5,
+
+           fastForwardButtonX + buttonSize * 0.40,
+           fastForwardButtonY + buttonSize * 0.8);
+
+  // -------------------------------------------------
+  // REWIND
+  // -------------------------------------------------
+
+  triangle(rewindButtonX + buttonSize * 0.90,
+           rewindButtonY + buttonSize * 0.2,
+
+           rewindButtonX + buttonSize * 0.55,
+           rewindButtonY + buttonSize * 0.5,
+
+           rewindButtonX + buttonSize * 0.90,
+           rewindButtonY + buttonSize * 0.8);
+
+  triangle(rewindButtonX + buttonSize * 0.60,
+           rewindButtonY + buttonSize * 0.2,
+
+           rewindButtonX + buttonSize * 0.25,
+           rewindButtonY + buttonSize * 0.5,
+
+           rewindButtonX + buttonSize * 0.60,
+           rewindButtonY + buttonSize * 0.8);
+
+  // -------------------------------------------------
+  // SHUFFLE
+  // -------------------------------------------------
+
+  stroke(0);
+
+  line(shuffleButtonX + buttonSize * 0.2,
+       shuffleButtonY + buttonSize * 0.2,
+
+       shuffleButtonX + buttonSize * 0.8,
+       shuffleButtonY + buttonSize * 0.8);
+
+  line(shuffleButtonX + buttonSize * 0.2,
+       shuffleButtonY + buttonSize * 0.8,
+
+       shuffleButtonX + buttonSize * 0.8,
+       shuffleButtonY + buttonSize * 0.2);
+
+  // -------------------------------------------------
+  // LOOP
+  // -------------------------------------------------
+
+  noFill();
+
+  arc(loopButtonX + buttonSize * 0.5,
+      loopButtonY + buttonSize * 0.5,
+      buttonSize * 0.55,
+      buttonSize * 0.55,
+      radians(40),
+      radians(340));
+
+  // -------------------------------------------------
+  // FAVORITE
+  // -------------------------------------------------
+
+  fill(0);
+  noStroke();
+
+  ellipse(favoriteButtonX + buttonSize * 0.35,
+          favoriteButtonY + buttonSize * 0.40,
+          buttonSize * 0.25,
+          buttonSize * 0.25);
+
+  ellipse(favoriteButtonX + buttonSize * 0.65,
+          favoriteButtonY + buttonSize * 0.40,
+          buttonSize * 0.25,
+          buttonSize * 0.25);
+
+  triangle(favoriteButtonX + buttonSize * 0.2,
+           favoriteButtonY + buttonSize * 0.45,
+
+           favoriteButtonX + buttonSize * 0.8,
+           favoriteButtonY + buttonSize * 0.45,
+
+           favoriteButtonX + buttonSize * 0.5,
+           favoriteButtonY + buttonSize * 0.8);
+
+  // -------------------------------------------------
+  // BOOKMARK
+  // -------------------------------------------------
+
+  rect(bookmarkButtonX + buttonSize * 0.3,
+       bookmarkButtonY + buttonSize * 0.15,
+       buttonSize * 0.4,
+       buttonSize * 0.45);
+
+  triangle(bookmarkButtonX + buttonSize * 0.3,
+           bookmarkButtonY + buttonSize * 0.6,
+
+           bookmarkButtonX + buttonSize * 0.7,
+           bookmarkButtonY + buttonSize * 0.6,
+
+           bookmarkButtonX + buttonSize * 0.5,
+           bookmarkButtonY + buttonSize * 0.85);
+
+  // -------------------------------------------------
+  // X SYMBOL
+  // -------------------------------------------------
+
+  fill(0);
+
+  textSize(closeButtonHeight * 0.7);
 
   text("X",
        closeButtonX + closeButtonWidth / 2.0,
        closeButtonY + closeButtonHeight / 2.0);
 }
 
-void mousePressed() {
-}
+// -------------------------------------------------
+// KEYBOARD CONTROLS
+// -------------------------------------------------
 
 void keyPressed() {
+
+  // PLAY
+
+  if (key == 'p' || key == 'P') {
+
+    playList[currentSong].loop(0);
+  }
+
+  // PAUSE
+
+  if (key == 'o' || key == 'O') {
+
+    if (playList[currentSong].isPlaying()) {
+
+      playList[currentSong].pause();
+    }
+  }
+
+  // STOP
+
+  if (key == 's' || key == 'S') {
+
+    playList[currentSong].pause();
+    playList[currentSong].rewind();
+  }
+
+  // LOOP ONCE
+
+  if (key == 'l' || key == 'L') {
+
+    playList[currentSong].loop(1);
+  }
+
+  // LOOP FOREVER
+
+  if (key == 'k' || key == 'K') {
+
+    playList[currentSong].loop();
+  }
+
+  // FAST FORWARD
+
+  if (key == 'f' || key == 'F') {
+
+    playList[currentSong].skip(10000);
+  }
+
+  // REWIND
+
+  if (key == 'r' || key == 'R') {
+
+    playList[currentSong].skip(-10000);
+  }
+
+  // MUTE
+
+  if (key == 'w' || key == 'W') {
+
+    if (playList[currentSong].isMuted()) {
+
+      playList[currentSong].unmute();
+
+    } else {
+
+      playList[currentSong].mute();
+    }
+  }
+
+  // RANDOM SONG
+
+  if (key == 'y' || key == 'Y') {
+
+    currentSong = int(random(numberOfSongs));
+  }
+
+  // QUIT
+
+  if (key == 'q' || key == 'Q') {
+
+    exit();
+  }
+}
+
+// -------------------------------------------------
+// STOP
+// -------------------------------------------------
+
+void stop() {
+
+  playList[currentSong].close();
+
+  minim.stop();
+
+  super.stop();
 }
