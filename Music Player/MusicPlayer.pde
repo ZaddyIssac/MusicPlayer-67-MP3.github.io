@@ -414,14 +414,14 @@ void setup() {
   loopArcHeight = loopButtonDivHeight * 0.55;
   loopArcStart = radians(40);
   loopArcStop = radians(340);
- loopArrowX1 = loopButtonDivX + loopButtonDivWidth * 0.84;
-loopArrowY1 = loopButtonDivY + loopButtonDivHeight * 0.52;
+  loopArrowX1 = loopButtonDivX + loopButtonDivWidth * 0.84;
+  loopArrowY1 = loopButtonDivY + loopButtonDivHeight * 0.52;
 
-loopArrowX2 = loopButtonDivX + loopButtonDivWidth * 0.70;
-loopArrowY2 = loopButtonDivY + loopButtonDivHeight * 0.44;
+  loopArrowX2 = loopButtonDivX + loopButtonDivWidth * 0.70;
+  loopArrowY2 = loopButtonDivY + loopButtonDivHeight * 0.44;
 
-loopArrowX3 = loopButtonDivX + loopButtonDivWidth * 0.80;
-loopArrowY3 = loopButtonDivY + loopButtonDivHeight * 0.34;;
+  loopArrowX3 = loopButtonDivX + loopButtonDivWidth * 0.80;
+  loopArrowY3 = loopButtonDivY + loopButtonDivHeight * 0.34;;
   
   favoriteCircle1X = favoriteButtonDivX + favoriteButtonDivWidth * 0.35;
   favoriteCircle1Y = favoriteButtonDivY + favoriteButtonDivHeight * 0.47;
