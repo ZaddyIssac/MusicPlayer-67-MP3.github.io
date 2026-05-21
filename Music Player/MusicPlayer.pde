@@ -236,15 +236,15 @@ float loopArrowY3;
 
 void setup() {
 
-  size(450, 900);
+  size(425, 810);
 
   appWidth = width;
   appHeight = height;
 
   phoneScale = 3.0;
 
-  phoneStartX = 10;
-  phoneStartY = 10;
+  phoneStartX = 0;
+  phoneStartY = 0;
 
   imageName[1] = "67-kid";
   imageName[2] = "SoccerBall";
@@ -455,7 +455,7 @@ loopArrowY3 = loopButtonDivY + loopButtonDivHeight * 0.34;;
 
 void draw() {
 
-  background(255);
+  background(20, 30, 60);
 
   playButtonHover = mouseX >= playButtonDivX && mouseX <= playButtonDivX + playButtonDivWidth && mouseY >= playButtonDivY && mouseY <= playButtonDivY + playButtonDivHeight;
   pauseButtonHover = mouseX >= pauseButtonDivX && mouseX <= pauseButtonDivX + pauseButtonDivWidth && mouseY >= pauseButtonDivY && mouseY <= pauseButtonDivY + pauseButtonDivHeight;
@@ -467,18 +467,19 @@ void draw() {
   bookmarkButtonHover = mouseX >= bookmarkButtonDivX && mouseX <= bookmarkButtonDivX + bookmarkButtonDivWidth && mouseY >= bookmarkButtonDivY && mouseY <= bookmarkButtonDivY + bookmarkButtonDivHeight;
   closeButtonHover = mouseX >= closeButtonDivX && mouseX <= closeButtonDivX + closeButtonDivWidth && mouseY >= closeButtonDivY && mouseY <= closeButtonDivY + closeButtonDivHeight;
 
-  fill(255);
+  fill(20, 30, 60);
   stroke(0);
 
   rect(phoneDivX, phoneDivY, phoneDivWidth, phoneDivHeight);
+  fill(255);
   rect(songTitleOuterDivX, songTitleOuterDivY, songTitleOuterDivWidth, songTitleOuterDivHeight);
   rect(songTitleDivX, songTitleDivY, songTitleDivWidth, songTitleDivHeight);
   rect(artistDivX, artistDivY, artistDivWidth, artistDivHeight);
 
   if (closeButtonHover && mousePressed) {
-    fill(100);
+    fill(110, 0, 0);
   } else if (closeButtonHover) {
-    fill(180);
+    fill(170, 0, 0);
   } else {
     fill(255);
   }
@@ -631,13 +632,37 @@ void draw() {
   text("Artist Box", artistTextX, artistTextY);
 
   textSize(songTitleDivHeight * 0.45);
+  
+  fill(0);
+
+  textAlign(CENTER, CENTER);
+
+  // PROGRESS BAR LABEL
+
+  textSize(progressBarDivHeight * 0.55);
+
+  text(
+  "Progress Bar",
+  progressBarDivX + progressBarDivWidth / 2,
+  progressBarDivY + progressBarDivHeight / 2
+);
+
+  // LYRICS LABEL
+
+  textSize(lyricsDivHeight * 0.10);
+
+  text(
+  "Lyrics",
+  lyricsDivX + lyricsDivWidth / 2,
+  lyricsDivY + lyricsDivHeight * 0.08
+);
 
   if (currentSong == 1) {
-    text("EUREKA", songTitleTextX, songTitleTextY);
+    text("Eureka", songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 2) {
-    text("START ENGINE", songTitleTextX, songTitleTextY);
+    text("Start Engine", songTitleTextX, songTitleTextY);
   }
 }
 
