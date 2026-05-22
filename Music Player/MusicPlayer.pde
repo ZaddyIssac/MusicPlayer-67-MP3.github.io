@@ -234,10 +234,51 @@ float loopArrowY2;
 float loopArrowX3;
 float loopArrowY3;
 
+float nextButtonDivX;
+float nextButtonDivY;
+float nextButtonDivWidth;
+float nextButtonDivHeight;
+
+float previousButtonDivX;
+float previousButtonDivY;
+float previousButtonDivWidth;
+float previousButtonDivHeight;
+boolean nextButtonHover;
+boolean previousButtonHover;
+
+float nextTriangle1X1;
+float nextTriangle1Y1;
+float nextTriangle1X2;
+float nextTriangle1Y2;
+float nextTriangle1X3;
+float nextTriangle1Y3;
+
+float nextTriangle2X1;
+float nextTriangle2Y1;
+float nextTriangle2X2;
+float nextTriangle2Y2;
+float nextTriangle2X3;
+float nextTriangle2Y3;
+
+float previousTriangle1X1;
+float previousTriangle1Y1;
+float previousTriangle1X2;
+float previousTriangle1Y2;
+float previousTriangle1X3;
+float previousTriangle1Y3;
+
+float previousTriangle2X1;
+float previousTriangle2Y1;
+float previousTriangle2X2;
+float previousTriangle2Y2;
+float previousTriangle2X3;
+float previousTriangle2Y3;
+
+
 void setup() {
 
-  //size(425, 810);
-  fullScreen();
+  size(425, 810);
+  //fullScreen();
   
   appWidth = width;
   appHeight = height;
@@ -453,6 +494,52 @@ void setup() {
   bookmarkTriangleY2 = bookmarkButtonDivY + bookmarkButtonDivHeight * 0.6;
   bookmarkTriangleX3 = bookmarkButtonDivX + bookmarkButtonDivWidth * 0.5;
   bookmarkTriangleY3 = bookmarkButtonDivY + bookmarkButtonDivHeight * 0.85;
+  
+  nextButtonDivX = phoneStartX + 30 * phoneScale;
+  nextButtonDivY = phoneStartY + 106 * phoneScale;
+  nextButtonDivWidth = 10 * phoneScale;
+  nextButtonDivHeight = 10 * phoneScale;
+  
+  previousButtonDivX = phoneStartX + 16 * phoneScale;
+  previousButtonDivY = phoneStartY + 106 * phoneScale;
+  previousButtonDivWidth = 10 * phoneScale;
+  previousButtonDivHeight = 10 * phoneScale;
+  
+  nextTriangle1X1 = nextButtonDivX + nextButtonDivWidth * 0.20;
+  nextTriangle1Y1 = nextButtonDivY + nextButtonDivHeight * 0.25;
+
+  nextTriangle1X2 = nextButtonDivX + nextButtonDivWidth * 0.50;
+  nextTriangle1Y2 = nextButtonDivY + nextButtonDivHeight * 0.50;
+
+  nextTriangle1X3 = nextButtonDivX + nextButtonDivWidth * 0.20;
+  nextTriangle1Y3 = nextButtonDivY + nextButtonDivHeight * 0.75;
+
+  nextTriangle2X1 = nextButtonDivX + nextButtonDivWidth * 0.50;
+  nextTriangle2Y1 = nextButtonDivY + nextButtonDivHeight * 0.25;
+
+  nextTriangle2X2 = nextButtonDivX + nextButtonDivWidth * 0.80;
+  nextTriangle2Y2 = nextButtonDivY + nextButtonDivHeight * 0.50;
+
+  nextTriangle2X3 = nextButtonDivX + nextButtonDivWidth * 0.50;
+  nextTriangle2Y3 = nextButtonDivY + nextButtonDivHeight * 0.75;
+  
+  previousTriangle1X1 = previousButtonDivX + previousButtonDivWidth * 0.80;
+  previousTriangle1Y1 = previousButtonDivY + previousButtonDivHeight * 0.25;
+
+  previousTriangle1X2 = previousButtonDivX + previousButtonDivWidth * 0.50;
+  previousTriangle1Y2 = previousButtonDivY + previousButtonDivHeight * 0.50;
+
+  previousTriangle1X3 = previousButtonDivX + previousButtonDivWidth * 0.80;
+  previousTriangle1Y3 = previousButtonDivY + previousButtonDivHeight * 0.75;
+
+  previousTriangle2X1 = previousButtonDivX + previousButtonDivWidth * 0.50;
+  previousTriangle2Y1 = previousButtonDivY + previousButtonDivHeight * 0.25;
+
+  previousTriangle2X2 = previousButtonDivX + previousButtonDivWidth * 0.20;
+  previousTriangle2Y2 = previousButtonDivY + previousButtonDivHeight * 0.50;
+
+  previousTriangle2X3 = previousButtonDivX + previousButtonDivWidth * 0.50;
+  previousTriangle2Y3 = previousButtonDivY + previousButtonDivHeight * 0.75;
 }
 
 void draw() {
@@ -468,6 +555,8 @@ void draw() {
   favoriteButtonHover = mouseX >= favoriteButtonDivX && mouseX <= favoriteButtonDivX + favoriteButtonDivWidth && mouseY >= favoriteButtonDivY && mouseY <= favoriteButtonDivY + favoriteButtonDivHeight;
   bookmarkButtonHover = mouseX >= bookmarkButtonDivX && mouseX <= bookmarkButtonDivX + bookmarkButtonDivWidth && mouseY >= bookmarkButtonDivY && mouseY <= bookmarkButtonDivY + bookmarkButtonDivHeight;
   closeButtonHover = mouseX >= closeButtonDivX && mouseX <= closeButtonDivX + closeButtonDivWidth && mouseY >= closeButtonDivY && mouseY <= closeButtonDivY + closeButtonDivHeight;
+  nextButtonHover = mouseX >= nextButtonDivX && mouseX <= nextButtonDivX + nextButtonDivWidth && mouseY >= nextButtonDivY &&mouseY <= nextButtonDivY + nextButtonDivHeight;
+  previousButtonHover = mouseX >= previousButtonDivX && mouseX <= previousButtonDivX + previousButtonDivWidth && mouseY >= previousButtonDivY && mouseY <= previousButtonDivY + previousButtonDivHeight;
 
   fill(20, 30, 60);
   stroke(0);
@@ -580,6 +669,37 @@ void draw() {
   if (currentSong == 2 && image[2] != null) {
     image(image[2], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
   }
+  
+  if (nextButtonHover && mousePressed) {
+  fill(100);
+  } else if (nextButtonHover) {
+  fill(180);
+  } else {
+  fill(255);
+  }
+
+  rect(
+  nextButtonDivX,
+  nextButtonDivY,
+  nextButtonDivWidth,
+  nextButtonDivHeight
+  );
+  
+  if (previousButtonHover && mousePressed) {
+  fill(100);
+  } else if (previousButtonHover) {
+  fill(180);
+  } else {
+  fill(255);
+  }
+  
+  fill(255);
+  rect(
+  previousButtonDivX,
+  previousButtonDivY,
+  previousButtonDivWidth,
+  previousButtonDivHeight
+  );
 
   fill(0);
   stroke(0);
@@ -614,6 +734,43 @@ void draw() {
     loopArrowX1,
     loopArrowY1
     );
+    
+    triangle(
+  nextTriangle1X1,
+  nextTriangle1Y1,
+  nextTriangle1X2,
+  nextTriangle1Y2,
+  nextTriangle1X3,
+  nextTriangle1Y3
+  );
+  
+  triangle(
+  nextTriangle2X1,
+  nextTriangle2Y1,
+  nextTriangle2X2,
+  nextTriangle2Y2,
+  nextTriangle2X3,
+  nextTriangle2Y3
+  );
+  
+  triangle(
+  previousTriangle1X1,
+  previousTriangle1Y1,
+  previousTriangle1X2,
+  previousTriangle1Y2,
+  previousTriangle1X3,
+  previousTriangle1Y3
+  );
+  
+  triangle(
+  previousTriangle2X1,
+  previousTriangle2Y1,
+  previousTriangle2X2,
+  previousTriangle2Y2,
+  previousTriangle2X3,
+  previousTriangle2Y3
+  );
+  
 
   fill(0);
   noStroke();
@@ -670,7 +827,9 @@ void draw() {
 
 void mousePressed() {
 
+  // PLAY BUTTON
   if (playButtonHover) {
+
     if (currentSong == 1) {
       song1.loop(0);
     }
@@ -680,7 +839,9 @@ void mousePressed() {
     }
   }
 
+  // PAUSE BUTTON
   if (pauseButtonHover) {
+
     if (currentSong == 1) {
       song1.pause();
     }
@@ -690,7 +851,9 @@ void mousePressed() {
     }
   }
 
+  // FAST FORWARD BUTTON
   if (fastForwardButtonHover) {
+
     if (currentSong == 1) {
       song1.skip(10000);
     }
@@ -700,7 +863,9 @@ void mousePressed() {
     }
   }
 
+  // REWIND BUTTON
   if (rewindButtonHover) {
+
     if (currentSong == 1) {
       song1.skip(-10000);
     }
@@ -710,19 +875,28 @@ void mousePressed() {
     }
   }
 
+  // SHUFFLE BUTTON
   if (shuffleButtonHover) {
+
     if (currentSong == 1) {
+
       song1.pause();
       song1.rewind();
+
       currentSong = 2;
+
     } else {
+
       song2.pause();
       song2.rewind();
+
       currentSong = 1;
     }
   }
 
+  // LOOP BUTTON
   if (loopButtonHover) {
+
     if (currentSong == 1) {
       song1.loop();
     }
@@ -732,14 +906,51 @@ void mousePressed() {
     }
   }
 
+  // FAVORITE BUTTON
   if (favoriteButtonHover) {
     println("Song added to favorites");
   }
 
+  // BOOKMARK BUTTON
   if (bookmarkButtonHover) {
     println("Song bookmarked");
   }
 
+  // PREVIOUS SONG BUTTON
+  if (
+    mouseX >= previousButtonDivX &&
+    mouseX <= previousButtonDivX + previousButtonDivWidth &&
+    mouseY >= previousButtonDivY &&
+    mouseY <= previousButtonDivY + previousButtonDivHeight
+    ) {
+
+    if (currentSong == 2) {
+
+      song2.pause();
+      song2.rewind();
+
+      currentSong = 1;
+    }
+  }
+
+  // NEXT SONG BUTTON
+  if (
+    mouseX >= nextButtonDivX &&
+    mouseX <= nextButtonDivX + nextButtonDivWidth &&
+    mouseY >= nextButtonDivY &&
+    mouseY <= nextButtonDivY + nextButtonDivHeight
+    ) {
+
+    if (currentSong == 1) {
+
+      song1.pause();
+      song1.rewind();
+
+      currentSong = 2;
+    }
+  }
+
+  // CLOSE BUTTON
   if (closeButtonHover) {
     exit();
   }
@@ -810,4 +1021,74 @@ void keyPressed() {
   if (key == 'q' || key == 'Q') {
     exit();
   }
+  if (nextButtonHover) {
+
+  if (currentSong == 1) {
+
+    song1.pause();
+    song1.rewind();
+
+    currentSong = 2;
+
+  } else {
+
+    song2.pause();
+    song2.rewind();
+
+    currentSong = 1;
+  }
+}
+if (previousButtonHover) {
+
+  if (currentSong == 2) {
+
+    song2.pause();
+    song2.rewind();
+
+    currentSong = 1;
+
+  } else {
+
+    song1.pause();
+    song1.rewind();
+
+    currentSong = 2;
+  }
+}
+
+if (key == 'n' || key == 'N') {
+
+  if (currentSong == 1) {
+
+    song1.pause();
+    song1.rewind();
+
+    currentSong = 2;
+
+  } else {
+
+    song2.pause();
+    song2.rewind();
+
+    currentSong = 1;
+  }
+}
+
+if (key == 'b' || key == 'B') {
+
+  if (currentSong == 2) {
+
+    song2.pause();
+    song2.rewind();
+
+    currentSong = 1;
+
+  } else {
+
+    song1.pause();
+    song1.rewind();
+
+    currentSong = 2;
+  }
+}
 }
