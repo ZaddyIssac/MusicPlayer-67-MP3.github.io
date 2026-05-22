@@ -1,5 +1,5 @@
 /* Music App, Final Project
-*/
+ */
 //
 //Minim Library
 import ddf.minim.*;
@@ -236,8 +236,9 @@ float loopArrowY3;
 
 void setup() {
 
-  size(425, 810);
-
+  //size(425, 810);
+  fullScreen();
+  
   appWidth = width;
   appHeight = height;
 
@@ -421,8 +422,9 @@ void setup() {
   loopArrowY2 = loopButtonDivY + loopButtonDivHeight * 0.44;
 
   loopArrowX3 = loopButtonDivX + loopButtonDivWidth * 0.80;
-  loopArrowY3 = loopButtonDivY + loopButtonDivHeight * 0.34;;
-  
+  loopArrowY3 = loopButtonDivY + loopButtonDivHeight * 0.34;
+  ;
+
   favoriteCircle1X = favoriteButtonDivX + favoriteButtonDivWidth * 0.35;
   favoriteCircle1Y = favoriteButtonDivY + favoriteButtonDivHeight * 0.47;
   favoriteCircle1Width = favoriteButtonDivWidth * 0.25;
@@ -603,15 +605,15 @@ void draw() {
   fill(0);
 
   triangle(
-  loopArrowX3,
-  loopArrowY3,
+    loopArrowX3,
+    loopArrowY3,
 
-  loopArrowX2,
-  loopArrowY2,
+    loopArrowX2,
+    loopArrowY2,
 
-  loopArrowX1,
-  loopArrowY1
-  );
+    loopArrowX1,
+    loopArrowY1
+    );
 
   fill(0);
   noStroke();
@@ -632,7 +634,7 @@ void draw() {
   text("Artist Box", artistTextX, artistTextY);
 
   textSize(songTitleDivHeight * 0.45);
-  
+
   fill(0);
 
   textAlign(CENTER, CENTER);
@@ -642,20 +644,20 @@ void draw() {
   textSize(progressBarDivHeight * 0.55);
 
   text(
-  "Progress Bar",
-  progressBarDivX + progressBarDivWidth / 2,
-  progressBarDivY + progressBarDivHeight / 2
-);
+    "Progress Bar",
+    progressBarDivX + progressBarDivWidth / 2,
+    progressBarDivY + progressBarDivHeight / 2
+    );
 
   // LYRICS LABEL
 
   textSize(lyricsDivHeight * 0.10);
 
   text(
-  "Lyrics",
-  lyricsDivX + lyricsDivWidth / 2,
-  lyricsDivY + lyricsDivHeight * 0.08
-);
+    "Lyrics",
+    lyricsDivX + lyricsDivWidth / 2,
+    lyricsDivY + lyricsDivHeight * 0.08
+    );
 
   if (currentSong == 1) {
     text("Eureka", songTitleTextX, songTitleTextY);
