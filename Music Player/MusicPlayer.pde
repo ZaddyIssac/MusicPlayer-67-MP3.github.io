@@ -288,8 +288,8 @@ void setup() {
   phoneStartX = 0;
   phoneStartY = 0;
 
-  imageName[1] = "67-kid";
-  imageName[2] = "SoccerBall";
+  imageName[1] = "Eureka";
+  imageName[2] = "Engine";
 
   for (int i = 1; i <= 2; i++) {
 
@@ -557,8 +557,9 @@ void draw() {
   closeButtonHover = mouseX >= closeButtonDivX && mouseX <= closeButtonDivX + closeButtonDivWidth && mouseY >= closeButtonDivY && mouseY <= closeButtonDivY + closeButtonDivHeight;
   nextButtonHover = mouseX >= nextButtonDivX && mouseX <= nextButtonDivX + nextButtonDivWidth && mouseY >= nextButtonDivY &&mouseY <= nextButtonDivY + nextButtonDivHeight;
   previousButtonHover = mouseX >= previousButtonDivX && mouseX <= previousButtonDivX + previousButtonDivWidth && mouseY >= previousButtonDivY && mouseY <= previousButtonDivY + previousButtonDivHeight;
+  previousButtonHover = mouseX >= previousButtonDivX && mouseX <= previousButtonDivX + previousButtonDivWidth &&  mouseY >= previousButtonDivY &&  mouseY <= previousButtonDivY + previousButtonDivHeight;
 
-  fill(20, 30, 60);
+  fill(0);
   stroke(0);
 
   rect(phoneDivX, phoneDivY, phoneDivWidth, phoneDivHeight);
@@ -578,7 +579,40 @@ void draw() {
   rect(closeButtonDivX, closeButtonDivY, closeButtonDivWidth, closeButtonDivHeight);
 
   fill(255);
-  rect(progressBarDivX, progressBarDivY, progressBarDivWidth, progressBarDivHeight);
+ // Progress Bar Background
+
+fill(255);
+
+rect(
+  progressBarDivX,
+  progressBarDivY,
+  progressBarDivWidth,
+  progressBarDivHeight
+);
+
+// Progress Fill
+
+AudioPlayer currentAudio;
+
+if (currentSong == 1) {
+  currentAudio = song1;
+} else {
+  currentAudio = song2;
+}
+
+float progress =
+  (float)currentAudio.position() /
+  (float)currentAudio.length();
+
+fill(0, 180, 0);
+
+rect(
+  progressBarDivX,
+  progressBarDivY,
+  progressBarDivWidth * progress,
+  progressBarDivHeight
+);
+fill(255);
   rect(lyricsDivX, lyricsDivY, lyricsDivWidth, lyricsDivHeight);
   rect(imageDivX, imageDivY, imageDivWidth, imageDivHeight);
 
@@ -795,16 +829,6 @@ void draw() {
   fill(0);
 
   textAlign(CENTER, CENTER);
-
-  // PROGRESS BAR LABEL
-
-  textSize(progressBarDivHeight * 0.55);
-
-  text(
-    "Progress Bar",
-    progressBarDivX + progressBarDivWidth / 2,
-    progressBarDivY + progressBarDivHeight / 2
-    );
 
   // LYRICS LABEL
 
