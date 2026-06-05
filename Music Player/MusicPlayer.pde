@@ -288,8 +288,9 @@ void setup() {
   phoneStartX = 0;
   phoneStartY = 0;
 
-  imageName[1] = "Eureka";
-  imageName[2] = "Engine";
+  imageName[1] = "I_Wonder";
+  imageName[2] = "One_More_Night";
+  //imageName[3] = "";
 
   for (int i = 1; i <= 2; i++) {
 
@@ -303,8 +304,9 @@ void setup() {
 
   minim = new Minim(this);
 
-  song1 = minim.loadFile("Eureka.mp3");
-  song2 = minim.loadFile("Start_Engine.mp3");
+  song1 = minim.loadFile("I_Wonder.mp3");
+  song2 = minim.loadFile("One_More_Night.mp3");
+  //song3= minim.loadFile(".mp3");
 
   phoneDivX = phoneStartX + 0 * phoneScale;
   phoneDivY = phoneStartY + 0 * phoneScale;
@@ -557,8 +559,6 @@ void draw() {
   closeButtonHover = mouseX >= closeButtonDivX && mouseX <= closeButtonDivX + closeButtonDivWidth && mouseY >= closeButtonDivY && mouseY <= closeButtonDivY + closeButtonDivHeight;
   nextButtonHover = mouseX >= nextButtonDivX && mouseX <= nextButtonDivX + nextButtonDivWidth && mouseY >= nextButtonDivY &&mouseY <= nextButtonDivY + nextButtonDivHeight;
   previousButtonHover = mouseX >= previousButtonDivX && mouseX <= previousButtonDivX + previousButtonDivWidth && mouseY >= previousButtonDivY && mouseY <= previousButtonDivY + previousButtonDivHeight;
-  previousButtonHover = mouseX >= previousButtonDivX && mouseX <= previousButtonDivX + previousButtonDivWidth &&  mouseY >= previousButtonDivY &&  mouseY <= previousButtonDivY + previousButtonDivHeight;
-
   fill(0);
   stroke(0);
 
@@ -727,7 +727,6 @@ fill(255);
   fill(255);
   }
   
-  fill(255);
   rect(
   previousButtonDivX,
   previousButtonDivY,
@@ -740,7 +739,7 @@ fill(255);
 
   triangle(playTriangleX1, playTriangleY1, playTriangleX2, playTriangleY2, playTriangleX3, playTriangleY3);
 
-  strokeWeight(2);
+  strokeWeight(4);
   line(pauseLine1X1, pauseLine1Y1, pauseLine1X2, pauseLine1Y2);
   line(pauseLine2X1, pauseLine2Y1, pauseLine2X2, pauseLine2Y2);
   strokeWeight(1);
@@ -751,6 +750,7 @@ fill(255);
   triangle(rewindTriangle1X1, rewindTriangle1Y1, rewindTriangle1X2, rewindTriangle1Y2, rewindTriangle1X3, rewindTriangle1Y3);
   triangle(rewindTriangle2X1, rewindTriangle2Y1, rewindTriangle2X2, rewindTriangle2Y2, rewindTriangle2X3, rewindTriangle2Y3);
 
+  strokeWeight(3);
   line(shuffleLine1X1, shuffleLine1Y1, shuffleLine1X2, shuffleLine1Y2);
   line(shuffleLine2X1, shuffleLine2Y1, shuffleLine2X2, shuffleLine2Y2);
 
@@ -806,18 +806,20 @@ fill(255);
   );
   
 
-  fill(0);
+  fill(255, 0, 0);
   noStroke();
   ellipse(favoriteCircle1X, favoriteCircle1Y, favoriteCircle1Width, favoriteCircle1Height);
   ellipse(favoriteCircle2X, favoriteCircle2Y, favoriteCircle2Width, favoriteCircle2Height);
   triangle(favoriteTriangleX1, favoriteTriangleY1, favoriteTriangleX2, favoriteTriangleY2, favoriteTriangleX3, favoriteTriangleY3);
   stroke(0);
-
+  
+fill(255, 180, 0);
+stroke(255, 180, 0);
   rect(bookmarkTopDivX, bookmarkTopDivY, bookmarkTopDivWidth, bookmarkTopDivHeight);
   triangle(bookmarkTriangleX1, bookmarkTriangleY1, bookmarkTriangleX2, bookmarkTriangleY2, bookmarkTriangleX3, bookmarkTriangleY3);
-
+ 
   textAlign(CENTER, CENTER);
-
+  fill(0);
   textSize(closeButtonDivHeight * 0.7);
   text("X", closeTextX, closeTextY);
 
@@ -841,11 +843,11 @@ fill(255);
     );
 
   if (currentSong == 1) {
-    text("Eureka", songTitleTextX, songTitleTextY);
+    text("I Wonder" , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 2) {
-    text("Start Engine", songTitleTextX, songTitleTextY);
+    text("One More Night" , songTitleTextX, songTitleTextY);
   }
 }
 
