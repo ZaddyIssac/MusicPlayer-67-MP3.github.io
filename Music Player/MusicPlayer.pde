@@ -22,6 +22,17 @@ AudioPlayer song8;
 AudioPlayer song9;
 AudioPlayer song10;
 
+String[] lyrics1;
+String[] lyrics2;
+String[] lyrics3;
+String[] lyrics4;
+String[] lyrics5;
+String[] lyrics6;
+String[] lyrics7;
+String[] lyrics8;
+String[] lyrics9;
+String[] lyrics10;
+
 int currentSong = 1;
 
 int appWidth;
@@ -79,6 +90,7 @@ float lyricsDivX;
 float lyricsDivY;
 float lyricsDivWidth;
 float lyricsDivHeight;
+float lyricsScrollY = 0;
 
 float imageDivX;
 float imageDivY;
@@ -296,16 +308,16 @@ void setup() {
   phoneStartX = 0;
   phoneStartY = 0;
 
-  imageName[1] = "I_Wonder";
+  imageName[1] = "Dont_Stop_Me_Now";
   imageName[2] = "One_More_Night";
   imageName[3] = "Babydoll";
   imageName[4] = "Cant_Hold_Us";
   imageName[5] = "Seventh_Heaven";
   imageName[6] = "Animals";
-  imageName[7] = "Payphone";
-  imageName[8] = "Song_8";
-  imageName[9] = "Song_9";
-  imageName[10] = "Song_10";
+  imageName[7] = "Lonely";
+  imageName[8] = "Tek_it";
+  imageName[9] = "Jane";
+  imageName[10] = "Lucid_Dreams";
 
   for (int i = 1; i <= 10; i++) {
 
@@ -319,16 +331,17 @@ void setup() {
 
   minim = new Minim(this);
 
-  song1 = minim.loadFile("I_Wonder.mp3");
+  song1 = minim.loadFile("Dont_Stop_Me_Now.mp3");
   song2 = minim.loadFile("One_More_Night.mp3");
   song3 = minim.loadFile("Babydoll.mp3");
   song4 = minim.loadFile("Cant_Hold_Us.mp3");
   song5 = minim.loadFile("Seventh_Heaven.mp3");
   song6 = minim.loadFile("Animals.mp3");
-  song7 = minim.loadFile("Payphone.mp3");
-  song8 = minim.loadFile("Song_8.mp3");
-  song9 = minim.loadFile("Song_9.mp3");
-  song10 = minim.loadFile("Song_10.mp3");
+  song7 = minim.loadFile("Lonely.mp3");
+  song8 = minim.loadFile("Tek_it.mp3");
+  song9 = minim.loadFile("Jane.mp3");
+  song10 = minim.loadFile("Lucid_Dreams.mp3");
+  
 
   phoneDivX = phoneStartX + 0 * phoneScale;
   phoneDivY = phoneStartY + 0 * phoneScale;
@@ -564,6 +577,29 @@ void setup() {
 
   previousTriangle2X3 = previousButtonDivX + previousButtonDivWidth * 0.50;
   previousTriangle2Y3 = previousButtonDivY + previousButtonDivHeight * 0.75;
+  
+  
+  lyrics1 = loadStrings("Dont_Stop_Me_Now.txt");
+  lyrics2 = loadStrings("One_More_Night.txt");
+  lyrics3 = loadStrings("Babydoll.txt");
+  lyrics4 = loadStrings("Cant_Hold_Us.txt");
+  lyrics5 = loadStrings("Seventh_Heaven.txt");
+  lyrics6 = loadStrings("Animals.txt");
+  lyrics7 = loadStrings("Lonely.txt");
+  lyrics8 = loadStrings("Tek_it.txt");
+  lyrics9 = loadStrings("Jane.txt");
+  lyrics10 = loadStrings("Lucid_Dreams.txt");
+
+  if (lyrics1 == null) { lyrics1 = new String[0]; }
+  if (lyrics2 == null) { lyrics2 = new String[0]; }
+  if (lyrics3 == null) { lyrics3 = new String[0]; }
+  if (lyrics4 == null) { lyrics4 = new String[0]; }
+  if (lyrics5 == null) { lyrics5 = new String[0]; }
+  if (lyrics6 == null) { lyrics6 = new String[0]; }
+  if (lyrics7 == null) { lyrics7 = new String[0]; }
+  if (lyrics8 == null) { lyrics8 = new String[0]; }
+  if (lyrics9 == null) { lyrics9 = new String[0]; }
+  if (lyrics10 == null) { lyrics10 = new String[0]; }
 }
 
 void draw() {
@@ -894,7 +930,58 @@ stroke(255, 180, 0);
   text("X", closeTextX, closeTextY);
 
   textSize(artistDivHeight * 0.8);
-  text("Artist Box", artistTextX, artistTextY);
+  textSize(artistDivHeight * 0.8);
+  
+  String artist1 = "Queen";
+  String artist2 = "Maroon 5";
+  String artist3 = "Dominic Fike";
+  String artist4 = "Macklemore";
+  String artist5 = "INOHA";
+  String artist6 = "Maroon 5";
+  String artist7 = "Unshackled";
+  String artist8 = "Cafune";
+  String artist9 = "The Long faces";
+  String artist10 = "Juice WRLD";
+
+if (currentSong == 1) {
+  text(artist1, artistTextX, artistTextY);
+}
+
+if (currentSong == 2) {
+  text(artist2, artistTextX, artistTextY);
+}
+
+if (currentSong == 3) {
+  text(artist3, artistTextX, artistTextY);
+}
+
+if (currentSong == 4) {
+  text(artist4, artistTextX, artistTextY);
+}
+
+if (currentSong == 5) {
+  text(artist5, artistTextX, artistTextY);
+}
+
+if (currentSong == 6) {
+  text(artist6, artistTextX, artistTextY);
+}
+
+if (currentSong == 7) {
+  text(artist7, artistTextX, artistTextY);
+}
+
+if (currentSong == 8) {
+  text(artist8, artistTextX, artistTextY);
+}
+
+if (currentSong == 9) {
+  text(artist9, artistTextX, artistTextY);
+}
+
+if (currentSong == 10) {
+  text(artist10, artistTextX, artistTextY);
+}
 
   textSize(songTitleDivHeight * 0.45);
 
@@ -905,15 +992,9 @@ stroke(255, 180, 0);
   // LYRICS LABEL
 
   textSize(lyricsDivHeight * 0.10);
-
-  text(
-    "Lyrics",
-    lyricsDivX + lyricsDivWidth / 2,
-    lyricsDivY + lyricsDivHeight * 0.08
-    );
-
+  
   if (currentSong == 1) {
-    text("I Wonder" , songTitleTextX, songTitleTextY);
+    text("Dont Stop Me " , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 2) {
@@ -937,20 +1018,94 @@ stroke(255, 180, 0);
   }
 
   if (currentSong == 7) {
-    text("Payphone" , songTitleTextX, songTitleTextY);
+    text("Lonely Lonely" , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 8) {
-    text("Song 8" , songTitleTextX, songTitleTextY);
+    text("Tek It" , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 9) {
-    text("Song 9" , songTitleTextX, songTitleTextY);
+    text("Jane!" , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 10) {
-    text("Song 10" , songTitleTextX, songTitleTextY);
+    text("Lucid_Dreams" , songTitleTextX, songTitleTextY);
   }
+  
+
+ // text(
+  // "Lyrics",
+   // lyricsDivX + lyricsDivWidth / 2,
+   // lyricsDivY + lyricsDivHeight * 0.08
+   // );
+
+  clip(lyricsDivX, lyricsDivY, lyricsDivWidth, lyricsDivHeight);
+
+  textSize(10);
+  fill(0);
+
+  if (currentSong == 1) {
+    for (int i = 0; i < lyrics1.length; i++) {
+      text(lyrics1[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 2) {
+    for (int i = 0; i < lyrics2.length; i++) {
+      text(lyrics2[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 3) {
+    for (int i = 0; i < lyrics3.length; i++) {
+      text(lyrics3[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 4) {
+    for (int i = 0; i < lyrics4.length; i++) {
+      text(lyrics4[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 5) {
+    for (int i = 0; i < lyrics5.length; i++) {
+      text(lyrics5[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 6) {
+    for (int i = 0; i < lyrics6.length; i++) {
+      text(lyrics6[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 7) {
+    for (int i = 0; i < lyrics7.length; i++) {
+      text(lyrics7[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 8) {
+    for (int i = 0; i < lyrics8.length; i++) {
+      text(lyrics8[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 9) {
+    for (int i = 0; i < lyrics9.length; i++) {
+      text(lyrics9[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  if (currentSong == 10) {
+    for (int i = 0; i < lyrics10.length; i++) {
+      text(lyrics10[i], lyricsDivX + lyricsDivWidth / 2, lyricsDivY + 25 + lyricsScrollY + i * 12);
+    }
+  }
+
+  noClip();
 }
 
 void mousePressed() {
@@ -958,89 +1113,31 @@ void mousePressed() {
   // PLAY BUTTON
   if (playButtonHover) {
 
-    if (currentSong == 1) {
-      song1.loop(0);
-    }
-
-    if (currentSong == 2) {
-      song2.loop(0);
-    }
-
-    if (currentSong == 3) {
-      song3.loop(0);
-    }
-
-    if (currentSong == 4) {
-      song4.loop(0);
-    }
-
-    if (currentSong == 5) {
-      song5.loop(0);
-    }
-
-    if (currentSong == 6) {
-      song6.loop(0);
-    }
-
-    if (currentSong == 7) {
-      song7.loop(0);
-    }
-
-    if (currentSong == 8) {
-      song8.loop(0);
-    }
-
-    if (currentSong == 9) {
-      song9.loop(0);
-    }
-
-    if (currentSong == 10) {
-      song10.loop(0);
-    }
+    if (currentSong == 1) { song1.loop(0); }
+    if (currentSong == 2) { song2.loop(0); }
+    if (currentSong == 3) { song3.loop(0); }
+    if (currentSong == 4) { song4.loop(0); }
+    if (currentSong == 5) { song5.loop(0); }
+    if (currentSong == 6) { song6.loop(0); }
+    if (currentSong == 7) { song7.loop(0); }
+    if (currentSong == 8) { song8.loop(0); }
+    if (currentSong == 9) { song9.loop(0); }
+    if (currentSong == 10) { song10.loop(0); }
   }
 
   // PAUSE BUTTON
   if (pauseButtonHover) {
 
-    if (currentSong == 1) {
-      song1.pause();
-    }
-
-    if (currentSong == 2) {
-      song2.pause();
-    }
-
-    if (currentSong == 3) {
-      song3.pause();
-    }
-
-    if (currentSong == 4) {
-      song4.pause();
-    }
-
-    if (currentSong == 5) {
-      song5.pause();
-    }
-
-    if (currentSong == 6) {
-      song6.pause();
-    }
-
-    if (currentSong == 7) {
-      song7.pause();
-    }
-
-    if (currentSong == 8) {
-      song8.pause();
-    }
-
-    if (currentSong == 9) {
-      song9.pause();
-    }
-
-    if (currentSong == 10) {
-      song10.pause();
-    }
+    if (currentSong == 1) { song1.pause(); }
+    if (currentSong == 2) { song2.pause(); }
+    if (currentSong == 3) { song3.pause(); }
+    if (currentSong == 4) { song4.pause(); }
+    if (currentSong == 5) { song5.pause(); }
+    if (currentSong == 6) { song6.pause(); }
+    if (currentSong == 7) { song7.pause(); }
+    if (currentSong == 8) { song8.pause(); }
+    if (currentSong == 9) { song9.pause(); }
+    if (currentSong == 10) { song10.pause(); }
   }
 
   // FAST FORWARD BUTTON
@@ -1077,7 +1174,19 @@ void mousePressed() {
   if (shuffleButtonHover) {
 
     pauseAndRewindCurrentSong();
+
     currentSong = int(random(1, 11));
+
+    if (currentSong == 1) { song1.loop(0); }
+    if (currentSong == 2) { song2.loop(0); }
+    if (currentSong == 3) { song3.loop(0); }
+    if (currentSong == 4) { song4.loop(0); }
+    if (currentSong == 5) { song5.loop(0); }
+    if (currentSong == 6) { song6.loop(0); }
+    if (currentSong == 7) { song7.loop(0); }
+    if (currentSong == 8) { song8.loop(0); }
+    if (currentSong == 9) { song9.loop(0); }
+    if (currentSong == 10) { song10.loop(0); }
   }
 
   // LOOP BUTTON
@@ -1120,6 +1229,17 @@ void mousePressed() {
     if (currentSong < 1) {
       currentSong = 10;
     }
+
+    if (currentSong == 1) { song1.loop(0); }
+    if (currentSong == 2) { song2.loop(0); }
+    if (currentSong == 3) { song3.loop(0); }
+    if (currentSong == 4) { song4.loop(0); }
+    if (currentSong == 5) { song5.loop(0); }
+    if (currentSong == 6) { song6.loop(0); }
+    if (currentSong == 7) { song7.loop(0); }
+    if (currentSong == 8) { song8.loop(0); }
+    if (currentSong == 9) { song9.loop(0); }
+    if (currentSong == 10) { song10.loop(0); }
   }
 
   // NEXT SONG BUTTON
@@ -1137,6 +1257,17 @@ void mousePressed() {
     if (currentSong > 10) {
       currentSong = 1;
     }
+
+    if (currentSong == 1) { song1.loop(0); }
+    if (currentSong == 2) { song2.loop(0); }
+    if (currentSong == 3) { song3.loop(0); }
+    if (currentSong == 4) { song4.loop(0); }
+    if (currentSong == 5) { song5.loop(0); }
+    if (currentSong == 6) { song6.loop(0); }
+    if (currentSong == 7) { song7.loop(0); }
+    if (currentSong == 8) { song8.loop(0); }
+    if (currentSong == 9) { song9.loop(0); }
+    if (currentSong == 10) { song10.loop(0); }
   }
 
   // CLOSE BUTTON
@@ -1238,6 +1369,19 @@ void keyPressed() {
     if (currentSong < 1) {
       currentSong = 10;
     }
+  }
+}
+
+void mouseWheel(MouseEvent event) {
+
+  if (
+    mouseX >= lyricsDivX &&
+    mouseX <= lyricsDivX + lyricsDivWidth &&
+    mouseY >= lyricsDivY &&
+    mouseY <= lyricsDivY + lyricsDivHeight
+    ) {
+
+    lyricsScrollY = lyricsScrollY - event.getCount() * 12;
   }
 }
 
