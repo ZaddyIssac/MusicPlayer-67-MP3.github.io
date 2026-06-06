@@ -13,6 +13,14 @@ Minim minim;
 
 AudioPlayer song1;
 AudioPlayer song2;
+AudioPlayer song3;
+AudioPlayer song4;
+AudioPlayer song5;
+AudioPlayer song6;
+AudioPlayer song7;
+AudioPlayer song8;
+AudioPlayer song9;
+AudioPlayer song10;
 
 int currentSong = 1;
 
@@ -27,14 +35,14 @@ float phoneStartX;
 float phoneStartY;
 
 // IMAGE PATHWAYS
-String[] imageName = new String[4];
+String[] imageName = new String[11];
 
 String imageDirectory = "data/";
 String fileExtension = ".jpg";
 
-String[] pathway = new String[4];
+String[] pathway = new String[11];
 
-PImage[] image = new PImage[4];
+PImage[] image = new PImage[11];
 
 // DIV VARIABLES
 float phoneDivX;
@@ -290,9 +298,16 @@ void setup() {
 
   imageName[1] = "I_Wonder";
   imageName[2] = "One_More_Night";
-  //imageName[3] = "";
+  imageName[3] = "Babydoll";
+  imageName[4] = "Cant_Hold_Us";
+  imageName[5] = "Seventh_Heaven";
+  imageName[6] = "Animals";
+  imageName[7] = "Payphone";
+  imageName[8] = "Song_8";
+  imageName[9] = "Song_9";
+  imageName[10] = "Song_10";
 
-  for (int i = 1; i <= 2; i++) {
+  for (int i = 1; i <= 10; i++) {
 
     pathway[i] =
       imageDirectory +
@@ -306,7 +321,14 @@ void setup() {
 
   song1 = minim.loadFile("I_Wonder.mp3");
   song2 = minim.loadFile("One_More_Night.mp3");
-  //song3= minim.loadFile(".mp3");
+  song3 = minim.loadFile("Babydoll.mp3");
+  song4 = minim.loadFile("Cant_Hold_Us.mp3");
+  song5 = minim.loadFile("Seventh_Heaven.mp3");
+  song6 = minim.loadFile("Animals.mp3");
+  song7 = minim.loadFile("Payphone.mp3");
+  song8 = minim.loadFile("Song_8.mp3");
+  song9 = minim.loadFile("Song_9.mp3");
+  song10 = minim.loadFile("Song_10.mp3");
 
   phoneDivX = phoneStartX + 0 * phoneScale;
   phoneDivY = phoneStartY + 0 * phoneScale;
@@ -596,8 +618,24 @@ AudioPlayer currentAudio;
 
 if (currentSong == 1) {
   currentAudio = song1;
-} else {
+} else if (currentSong == 2) {
   currentAudio = song2;
+} else if (currentSong == 3) {
+  currentAudio = song3;
+} else if (currentSong == 4) {
+  currentAudio = song4;
+} else if (currentSong == 5) {
+  currentAudio = song5;
+} else if (currentSong == 6) {
+  currentAudio = song6;
+} else if (currentSong == 7) {
+  currentAudio = song7;
+} else if (currentSong == 8) {
+  currentAudio = song8;
+} else if (currentSong == 9) {
+  currentAudio = song9;
+} else {
+  currentAudio = song10;
 }
 
 float progress =
@@ -702,6 +740,38 @@ fill(255);
 
   if (currentSong == 2 && image[2] != null) {
     image(image[2], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 3 && image[3] != null) {
+    image(image[3], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 4 && image[4] != null) {
+    image(image[4], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 5 && image[5] != null) {
+    image(image[5], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 6 && image[6] != null) {
+    image(image[6], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 7 && image[7] != null) {
+    image(image[7], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 8 && image[8] != null) {
+    image(image[8], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 9 && image[9] != null) {
+    image(image[9], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
+  }
+
+  if (currentSong == 10 && image[10] != null) {
+    image(image[10], imageDivX, imageDivY, imageDivWidth, imageDivHeight);
   }
   
   if (nextButtonHover && mousePressed) {
@@ -849,6 +919,38 @@ stroke(255, 180, 0);
   if (currentSong == 2) {
     text("One More Night" , songTitleTextX, songTitleTextY);
   }
+
+  if (currentSong == 3) {
+    text("Babydoll" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 4) {
+    text("Cant Hold Us" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 5) {
+    text("Seventh Heaven" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 6) {
+    text("Animals" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 7) {
+    text("Payphone" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 8) {
+    text("Song 8" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 9) {
+    text("Song 9" , songTitleTextX, songTitleTextY);
+  }
+
+  if (currentSong == 10) {
+    text("Song 10" , songTitleTextX, songTitleTextY);
+  }
 }
 
 void mousePressed() {
@@ -863,6 +965,38 @@ void mousePressed() {
     if (currentSong == 2) {
       song2.loop(0);
     }
+
+    if (currentSong == 3) {
+      song3.loop(0);
+    }
+
+    if (currentSong == 4) {
+      song4.loop(0);
+    }
+
+    if (currentSong == 5) {
+      song5.loop(0);
+    }
+
+    if (currentSong == 6) {
+      song6.loop(0);
+    }
+
+    if (currentSong == 7) {
+      song7.loop(0);
+    }
+
+    if (currentSong == 8) {
+      song8.loop(0);
+    }
+
+    if (currentSong == 9) {
+      song9.loop(0);
+    }
+
+    if (currentSong == 10) {
+      song10.loop(0);
+    }
   }
 
   // PAUSE BUTTON
@@ -875,61 +1009,90 @@ void mousePressed() {
     if (currentSong == 2) {
       song2.pause();
     }
+
+    if (currentSong == 3) {
+      song3.pause();
+    }
+
+    if (currentSong == 4) {
+      song4.pause();
+    }
+
+    if (currentSong == 5) {
+      song5.pause();
+    }
+
+    if (currentSong == 6) {
+      song6.pause();
+    }
+
+    if (currentSong == 7) {
+      song7.pause();
+    }
+
+    if (currentSong == 8) {
+      song8.pause();
+    }
+
+    if (currentSong == 9) {
+      song9.pause();
+    }
+
+    if (currentSong == 10) {
+      song10.pause();
+    }
   }
 
   // FAST FORWARD BUTTON
   if (fastForwardButtonHover) {
 
-    if (currentSong == 1) {
-      song1.skip(10000);
-    }
-
-    if (currentSong == 2) {
-      song2.skip(10000);
-    }
+    if (currentSong == 1) { song1.skip(10000); }
+    if (currentSong == 2) { song2.skip(10000); }
+    if (currentSong == 3) { song3.skip(10000); }
+    if (currentSong == 4) { song4.skip(10000); }
+    if (currentSong == 5) { song5.skip(10000); }
+    if (currentSong == 6) { song6.skip(10000); }
+    if (currentSong == 7) { song7.skip(10000); }
+    if (currentSong == 8) { song8.skip(10000); }
+    if (currentSong == 9) { song9.skip(10000); }
+    if (currentSong == 10) { song10.skip(10000); }
   }
 
   // REWIND BUTTON
   if (rewindButtonHover) {
 
-    if (currentSong == 1) {
-      song1.skip(-10000);
-    }
-
-    if (currentSong == 2) {
-      song2.skip(-10000);
-    }
+    if (currentSong == 1) { song1.skip(-10000); }
+    if (currentSong == 2) { song2.skip(-10000); }
+    if (currentSong == 3) { song3.skip(-10000); }
+    if (currentSong == 4) { song4.skip(-10000); }
+    if (currentSong == 5) { song5.skip(-10000); }
+    if (currentSong == 6) { song6.skip(-10000); }
+    if (currentSong == 7) { song7.skip(-10000); }
+    if (currentSong == 8) { song8.skip(-10000); }
+    if (currentSong == 9) { song9.skip(-10000); }
+    if (currentSong == 10) { song10.skip(-10000); }
   }
 
   // SHUFFLE BUTTON
   if (shuffleButtonHover) {
 
-    if (currentSong == 1) {
-
-      song1.pause();
-      song1.rewind();
-
-      currentSong = 2;
-
-    } else {
-
-      song2.pause();
-      song2.rewind();
-
-      currentSong = 1;
-    }
+    pauseAndRewindCurrentSong();
+    currentSong = int(random(1, 11));
   }
 
   // LOOP BUTTON
   if (loopButtonHover) {
 
-    if (currentSong == 1) {
-      song1.loop();
-    }
-
-    if (currentSong == 2) {
-      song2.loop();
-    }
+    if (currentSong == 1) { song1.loop(); }
+    if (currentSong == 2) { song2.loop(); }
+    if (currentSong == 3) { song3.loop(); }
+    if (currentSong == 4) { song4.loop(); }
+    if (currentSong == 5) { song5.loop(); }
+    if (currentSong == 6) { song6.loop(); }
+    if (currentSong == 7) { song7.loop(); }
+    if (currentSong == 8) { song8.loop(); }
+    if (currentSong == 9) { song9.loop(); }
+    if (currentSong == 10) { song10.loop(); }
   }
 
   // FAVORITE BUTTON
@@ -950,12 +1113,12 @@ void mousePressed() {
     mouseY <= previousButtonDivY + previousButtonDivHeight
     ) {
 
-    if (currentSong == 2) {
+    pauseAndRewindCurrentSong();
 
-      song2.pause();
-      song2.rewind();
+    currentSong = currentSong - 1;
 
-      currentSong = 1;
+    if (currentSong < 1) {
+      currentSong = 10;
     }
   }
 
@@ -967,12 +1130,12 @@ void mousePressed() {
     mouseY <= nextButtonDivY + nextButtonDivHeight
     ) {
 
-    if (currentSong == 1) {
+    pauseAndRewindCurrentSong();
 
-      song1.pause();
-      song1.rewind();
+    currentSong = currentSong + 1;
 
-      currentSong = 2;
+    if (currentSong > 10) {
+      currentSong = 1;
     }
   }
 
@@ -985,136 +1148,148 @@ void mousePressed() {
 void keyPressed() {
 
   if (key == 'p' || key == 'P') {
-    if (currentSong == 1) {
-      song1.loop(0);
-    }
-
-    if (currentSong == 2) {
-      song2.loop(0);
-    }
+    if (currentSong == 1) { song1.loop(0); }
+    if (currentSong == 2) { song2.loop(0); }
+    if (currentSong == 3) { song3.loop(0); }
+    if (currentSong == 4) { song4.loop(0); }
+    if (currentSong == 5) { song5.loop(0); }
+    if (currentSong == 6) { song6.loop(0); }
+    if (currentSong == 7) { song7.loop(0); }
+    if (currentSong == 8) { song8.loop(0); }
+    if (currentSong == 9) { song9.loop(0); }
+    if (currentSong == 10) { song10.loop(0); }
   }
 
   if (key == 'o' || key == 'O') {
-    if (currentSong == 1) {
-      song1.pause();
-    }
-
-    if (currentSong == 2) {
-      song2.pause();
-    }
+    if (currentSong == 1) { song1.pause(); }
+    if (currentSong == 2) { song2.pause(); }
+    if (currentSong == 3) { song3.pause(); }
+    if (currentSong == 4) { song4.pause(); }
+    if (currentSong == 5) { song5.pause(); }
+    if (currentSong == 6) { song6.pause(); }
+    if (currentSong == 7) { song7.pause(); }
+    if (currentSong == 8) { song8.pause(); }
+    if (currentSong == 9) { song9.pause(); }
+    if (currentSong == 10) { song10.pause(); }
   }
 
   if (key == 's' || key == 'S') {
-    if (currentSong == 1) {
-      song1.pause();
-      song1.rewind();
-    }
-
-    if (currentSong == 2) {
-      song2.pause();
-      song2.rewind();
-    }
+    pauseAndRewindCurrentSong();
   }
 
   if (key == 'f' || key == 'F') {
-    if (currentSong == 1) {
-      song1.skip(10000);
-    }
-
-    if (currentSong == 2) {
-      song2.skip(10000);
-    }
+    if (currentSong == 1) { song1.skip(10000); }
+    if (currentSong == 2) { song2.skip(10000); }
+    if (currentSong == 3) { song3.skip(10000); }
+    if (currentSong == 4) { song4.skip(10000); }
+    if (currentSong == 5) { song5.skip(10000); }
+    if (currentSong == 6) { song6.skip(10000); }
+    if (currentSong == 7) { song7.skip(10000); }
+    if (currentSong == 8) { song8.skip(10000); }
+    if (currentSong == 9) { song9.skip(10000); }
+    if (currentSong == 10) { song10.skip(10000); }
   }
 
   if (key == 'r' || key == 'R') {
-    if (currentSong == 1) {
-      song1.skip(-10000);
-    }
-
-    if (currentSong == 2) {
-      song2.skip(-10000);
-    }
+    if (currentSong == 1) { song1.skip(-10000); }
+    if (currentSong == 2) { song2.skip(-10000); }
+    if (currentSong == 3) { song3.skip(-10000); }
+    if (currentSong == 4) { song4.skip(-10000); }
+    if (currentSong == 5) { song5.skip(-10000); }
+    if (currentSong == 6) { song6.skip(-10000); }
+    if (currentSong == 7) { song7.skip(-10000); }
+    if (currentSong == 8) { song8.skip(-10000); }
+    if (currentSong == 9) { song9.skip(-10000); }
+    if (currentSong == 10) { song10.skip(-10000); }
   }
 
-  if (key == '1') {
-    currentSong = 1;
-  }
-
-  if (key == '2') {
-    currentSong = 2;
-  }
+  if (key == '1') { currentSong = 1; }
+  if (key == '2') { currentSong = 2; }
+  if (key == '3') { currentSong = 3; }
+  if (key == '4') { currentSong = 4; }
+  if (key == '5') { currentSong = 5; }
+  if (key == '6') { currentSong = 6; }
+  if (key == '7') { currentSong = 7; }
+  if (key == '8') { currentSong = 8; }
+  if (key == '9') { currentSong = 9; }
+  if (key == '0') { currentSong = 10; }
 
   if (key == 'q' || key == 'Q') {
     exit();
   }
-  if (nextButtonHover) {
+
+  if (key == 'n' || key == 'N') {
+
+    pauseAndRewindCurrentSong();
+
+    currentSong = currentSong + 1;
+
+    if (currentSong > 10) {
+      currentSong = 1;
+    }
+  }
+
+  if (key == 'b' || key == 'B') {
+
+    pauseAndRewindCurrentSong();
+
+    currentSong = currentSong - 1;
+
+    if (currentSong < 1) {
+      currentSong = 10;
+    }
+  }
+}
+
+void pauseAndRewindCurrentSong() {
 
   if (currentSong == 1) {
-
     song1.pause();
     song1.rewind();
-
-    currentSong = 2;
-
-  } else {
-
-    song2.pause();
-    song2.rewind();
-
-    currentSong = 1;
   }
-}
-if (previousButtonHover) {
 
   if (currentSong == 2) {
-
     song2.pause();
     song2.rewind();
-
-    currentSong = 1;
-
-  } else {
-
-    song1.pause();
-    song1.rewind();
-
-    currentSong = 2;
   }
-}
 
-if (key == 'n' || key == 'N') {
-
-  if (currentSong == 1) {
-
-    song1.pause();
-    song1.rewind();
-
-    currentSong = 2;
-
-  } else {
-
-    song2.pause();
-    song2.rewind();
-
-    currentSong = 1;
+  if (currentSong == 3) {
+    song3.pause();
+    song3.rewind();
   }
-}
 
-if (key == 'b' || key == 'B') {
-
-  if (currentSong == 2) {
-
-    song2.pause();
-    song2.rewind();
-
-    currentSong = 1;
-
-  } else {
-
-    song1.pause();
-    song1.rewind();
-
-    currentSong = 2;
+  if (currentSong == 4) {
+    song4.pause();
+    song4.rewind();
   }
-}
+
+  if (currentSong == 5) {
+    song5.pause();
+    song5.rewind();
+  }
+
+  if (currentSong == 6) {
+    song6.pause();
+    song6.rewind();
+  }
+
+  if (currentSong == 7) {
+    song7.pause();
+    song7.rewind();
+  }
+
+  if (currentSong == 8) {
+    song8.pause();
+    song8.rewind();
+  }
+
+  if (currentSong == 9) {
+    song9.pause();
+    song9.rewind();
+  }
+
+  if (currentSong == 10) {
+    song10.pause();
+    song10.rewind();
+  }
 }
