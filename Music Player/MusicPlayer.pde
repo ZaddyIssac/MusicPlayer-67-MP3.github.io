@@ -308,10 +308,10 @@ void setup() {
   phoneStartX = 0;
   phoneStartY = 0;
 
-  imageName[1] = "Dont_Stop_Me_Now";
+  imageName[1] = "505";
   imageName[2] = "One_More_Night";
   imageName[3] = "Babydoll";
-  imageName[4] = "Cant_Hold_Us";
+  imageName[4] = "WheredAllTheTimeGo";
   imageName[5] = "Seventh_Heaven";
   imageName[6] = "Animals";
   imageName[7] = "Lonely";
@@ -331,10 +331,10 @@ void setup() {
 
   minim = new Minim(this);
 
-  song1 = minim.loadFile("Dont_Stop_Me_Now.mp3");
+  song1 = minim.loadFile("505.mp3");
   song2 = minim.loadFile("One_More_Night.mp3");
   song3 = minim.loadFile("Babydoll.mp3");
-  song4 = minim.loadFile("Cant_Hold_Us.mp3");
+  song4 = minim.loadFile("WheredAllTheTimeGo.mp3");
   song5 = minim.loadFile("Seventh_Heaven.mp3");
   song6 = minim.loadFile("Animals.mp3");
   song7 = minim.loadFile("Lonely.mp3");
@@ -579,10 +579,10 @@ void setup() {
   previousTriangle2Y3 = previousButtonDivY + previousButtonDivHeight * 0.75;
   
   
-  lyrics1 = loadStrings("Dont_Stop_Me_Now.txt");
+  lyrics1 = loadStrings("505.txt");
   lyrics2 = loadStrings("One_More_Night.txt");
   lyrics3 = loadStrings("Babydoll.txt");
-  lyrics4 = loadStrings("Cant_Hold_Us.txt");
+  lyrics4 = loadStrings("WheredAllTheTimeGo.txt");
   lyrics5 = loadStrings("Seventh_Heaven.txt");
   lyrics6 = loadStrings("Animals.txt");
   lyrics7 = loadStrings("Lonely.txt");
@@ -932,10 +932,10 @@ stroke(255, 180, 0);
   textSize(artistDivHeight * 0.8);
   textSize(artistDivHeight * 0.8);
   
-  String artist1 = "Queen";
+  String artist1 = "Artic Monkeys";
   String artist2 = "Maroon 5";
   String artist3 = "Dominic Fike";
-  String artist4 = "Macklemore";
+  String artist4 = "Dr Dog";
   String artist5 = "INOHA";
   String artist6 = "Maroon 5";
   String artist7 = "Unshackled";
@@ -994,7 +994,7 @@ if (currentSong == 10) {
   textSize(lyricsDivHeight * 0.10);
   
   if (currentSong == 1) {
-    text("Dont Stop Me " , songTitleTextX, songTitleTextY);
+    text("505" , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 2) {
@@ -1006,7 +1006,7 @@ if (currentSong == 10) {
   }
 
   if (currentSong == 4) {
-    text("Cant Hold Us" , songTitleTextX, songTitleTextY);
+    text("All The Time Go" , songTitleTextX, songTitleTextY);
   }
 
   if (currentSong == 5) {
@@ -1042,7 +1042,7 @@ if (currentSong == 10) {
 
   clip(lyricsDivX, lyricsDivY, lyricsDivWidth, lyricsDivHeight);
 
-  textSize(10);
+  textSize(13);
   fill(0);
 
   if (currentSong == 1) {
